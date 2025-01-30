@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tejas Kumar Singh - Portfolio</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <style>
+    /* Custom Styles */
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.5s ease, color 0.5s ease;
+    }
+    .light-mode {
+      background: linear-gradient(135deg, #e0f7fa, #b3e5fc);
+      color: #333333;
+    }
+    .dark-mode {
+      background: linear-gradient(135deg, #1e1e2f, #2c3e50);
+      color: #e0e0e0;
+    }
+    .box {
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .light-mode .box {
+      background-color: #ffffff;
+    }
+    .dark-mode .box {
+      background-color: #1e293b;
+    }
+    .scrolling-tech-stack {
+      display: flex;
+      gap: 1.5rem;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 100%;
+      height: 6rem;
+    }
+    .scrolling-tech-stack div {
+      display: inline-block;
+      animation: scroll-left 20s linear infinite;
+    }
+    @keyframes scroll-left {
+      0% {
+        transform: translateX(100%);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+    .scrolling-tech-stack:hover div {
+      animation-play-state: paused;
+    }
+    .tech-icon {
+      width: 4rem;
+      height: 4rem;
+      object-fit: contain;
+      margin-right: 1rem; /* Add spacing between icons */
+    }
+    .project-card img,
+    .achievement-card img {
+      width: 4rem;
+      height: 4rem;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    .footer-bg {
+      background: linear-gradient(135deg, #ff7e5f, #feb47b);
+    }
+  </style>
+</head>
+<body class="light-mode">
+
+  <!-- Dark Mode Toggle -->
+  <button id="darkModeToggle" class="fixed top-4 right-4 z-50 bg-gray-200 dark:bg-gray-700 p-2 rounded-full shadow-md">
+    <img src="https://img.icons8.com/color/48/sun--v1.png" alt="Light Mode" id="modeIcon" class="w-6 h-6" />
+  </button>
+
+  <!-- Header Section -->
+  <header class="relative h-screen flex flex-col justify-center items-center text-center header-bg" id="home">
+    <div class="box w-full max-w-2xl mx-auto space-y-6 animate__animated animate__fadeIn">
+      <h1 class="text-5xl font-bold text-white">Tejas Kumar Singh</h1>
+      <div class="flex flex-col md:flex-row gap-4 items-center">
+        <div class="flex items-center gap-2 text-white">
+          <img src="https://img.icons8.com/color/48/phone.png" alt="Phone" class="w-8 h-8 hover:animate-bounce transition-transform duration-300" />
+          <span>+91 7652050611</span>
+        </div>
+        <div class="flex items-center gap-2 text-white">
+          <img src="https://img.icons8.com/color/48/email.png" alt="Email" class="w-8 h-8 hover:animate-bounce transition-transform duration-300" />
+          <span>singhtejas0001@gmail.com</span>
+        </div>
+        <div class="flex items-center gap-4 text-white">
+          <a href="#" class="hover:text-blue-300">
+            <img src="https://img.icons8.com/color/48/linkedin.png" alt="LinkedIn" class="w-8 h-8 hover:animate-bounce transition-transform duration-300" />
+          </a>
+          <a href="#" class="hover:text-pink-300">
+            <img src="https://img.icons8.com/color/48/github.png" alt="GitHub" class="w-8 h-8 hover:animate-bounce transition-transform duration-300" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Education Section -->
+  <section id="education" class="py-16">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold mb-8 text-colorful" data-aos="fade-up">Education</h2>
+      <div class="space-y-8">
+        <div class="timeline-item" data-aos="slide-right">
+          <div class="flex items-center gap-4">
+            <img src="https://img.icons8.com/color/48/university.png" alt="University" class="w-10 h-10" />
+            <div class="box w-full max-w-lg mx-auto">
+              <h3 class="text-xl font-semibold hover:text-blue-500 transition-colors duration-300">Galgotias University</h3>
+              <p>Bachelor of Technology, Computer Science and Engineering</p>
+              <p><strong>90.30%</strong></p>
+              <p>Greater Noida | Oct. 2021 – May 2025</p>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-item" data-aos="slide-left">
+          <div class="flex items-center gap-4">
+            <img src="https://img.icons8.com/color/48/school.png" alt="School" class="w-10 h-10" />
+            <div class="box w-full max-w-lg mx-auto">
+              <h3 class="text-xl font-semibold hover:text-blue-500 transition-colors duration-300">CBSE Private Candidate</h3>
+              <p>Intermediate</p>
+              <p><strong>61.80%</strong></p>
+              <p>New Delhi | Aug. 2020 – May 2021</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section id="experience" class="py-16">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold mb-8 text-colorful" data-aos="fade-up">Experience</h2>
+      <div class="space-y-8">
+        <div class="experience-item" data-aos="fade-up">
+          <div class="box w-full max-w-lg mx-auto">
+            <h3 class="text-xl font-semibold text-blue-500">ShipGlobal | Backend Developer</h3>
+            <p>New Delhi | September 2024 – Present</p>
+            <div class="mt-4 space-y-2">
+              <div>Developed scalable RESTful APIs using CodeIgniter 4.</div>
+              <div>Optimized MySQL queries, reducing execution time by 20%.</div>
+              <div>Automated shipment processing, improving on-time delivery by 10%.</div>
+            </div>
+          </div>
+        </div>
+        <div class="experience-item" data-aos="fade-up">
+          <div class="box w-full max-w-lg mx-auto">
+            <h3 class="text-xl font-semibold text-green-500">Naest Tutors | SDE Intern</h3>
+            <p>Greater Noida | March 2024 – August 2024</p>
+            <div class="mt-4 space-y-2">
+              <div>Built scalable web applications using HTML, CSS, JavaScript, PHP.</div>
+              <div>Reduced back-end processing time by 15%.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="py-16">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold mb-8 text-colorful" data-aos="fade-up">Projects</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="project-card p-6 bg-white dark:bg-gray-700 rounded-lg shadow-md" data-aos="flip-left">
+          <img src="https://img.icons8.com/color/48/online-shop.png" alt="E-Commerce" class="mx-auto mb-4" />
+          <div class="box w-full">
+            <h3 class="text-xl font-semibold text-purple-500">E-Commerce System</h3>
+            <p class="mt-2 text-gray-700 dark:text-gray-300">HTML, CSS, JavaScript, Tailwind CSS, Bootstrap, PHP, MySQL, MongoDB</p>
+            <div class="mt-4 space-y-2">
+              <div>Fully responsive e-commerce platform.</div>
+              <div>Back-end in PHP for product listings and payment processing.</div>
+              <div>MySQL for inventory management, MongoDB for logs.</div>
+            </div>
+          </div>
+        </div>
+        <div class="project-card p-6 bg-white dark:bg-gray-700 rounded-lg shadow-md" data-aos="flip-right">
+          <img src="https://img.icons8.com/color/48/chatbot.png" alt="Chatbot" class="mx-auto mb-4" />
+          <div class="box w-full">
+            <h3 class="text-xl font-semibold text-pink-500">Medical Chatbot</h3>
+            <p class="mt-2 text-gray-700 dark:text-gray-300">HTML, CSS, JavaScript, PHP, Node.js, Google Gemini API, MongoDB, OAuth</p>
+            <div class="mt-4 space-y-2">
+              <div>Developed a medical chatbot using Google Gemini API.</div>
+              <div>Integrated OAuth 2.0 for secure login.</div>
+              <div>MongoDB-based system for storing chat history.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical Skills Section -->
+  <section id="skills" class="py-16">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold mb-8 text-colorful" data-aos="fade-up">Technical Skills</h2>
+      <div class="scrolling-tech-stack overflow-hidden relative w-full h-20 bg-colorful dark:bg-gray-800 rounded-lg shadow-md">
+        <div class="flex gap-4 absolute whitespace-nowrap animate-scroll">
+          <div class="flex-shrink-0"><img src="https://img.icons8.com/color/48/java-coffee-cup-logo.png" alt="Java" class="tech-icon" /></div>
+          <div class="flex-shrink-0"><img src="https://img.icons8.com/color/48/python.png" alt="Python" class="tech-icon" /></div>
+          <div class="flex-shrink-0"><img src="https://img.icons8.com/color/48/javascript.png" alt="JavaScript" class="tech-icon" /></div>
+          <div class="flex-shrink-0"><img src="https://img.icons8.com/color/48/html-5.png" alt="HTML" class="tech-icon" /></div>
+          <div class="flex-shrink-0"><img src="https://img.icons8.com/color/48/css3.png" alt="CSS" class="tech-icon" /></div>
+          <div class="flex-shrink-0"><img src="https://img.icons8.com/color/48/php-logo.png" alt="PHP" class="tech-icon" /></div>
+          <div class="flex-shrink-0"><img src="https://img.icons8.com/color/48/nodejs.png" alt="Node.js" class="tech-icon" /></div>
+          <div class="flex-shrink-0"><img src="https://img.icons8.com/color/48/react-native.png" alt="React" class="tech-icon" /></div>
+          <div class="flex-shrink-0"><img src="https://img.icons8.com/color/48/bootstrap.png" alt="Bootstrap" class="tech-icon" /></div>
+          <div class="flex-shrink-0"><img src="https://img.icons8.com/color/48/tailwindcss.png" alt="Tailwind CSS" class="tech-icon" /></div>
+          <div class="flex-shrink-0"><img src="https://img.icons8.com/color/48/database.png" alt="Database" class="tech-icon" /></div>
+          <div class="flex-shrink-0"><img src="https://img.icons8.com/color/48/git.png" alt="Git" class="tech-icon" /></div>
+          <div class="flex-shrink-0"><img src="https://img.icons8.com/color/48/github.png" alt="GitHub" class="tech-icon" /></div>
+          <div class="flex-shrink-0"><img src="https://img.icons8.com/color/48/npm.png" alt="NPM" class="tech-icon" /></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Achievements Section -->
+  <section id="achievements" class="py-16">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold mb-8 text-colorful" data-aos="fade-up">Achievements</h2>
+      <div class="space-y-6">
+        <div class="achievement-card flex items-center gap-4" data-aos="fade-up">
+          <img src="https://img.icons8.com/color/48/trophy.png" alt="Trophy" class="w-10 h-10 hover:scale-110 transition-transform duration-300" />
+          <div class="box w-full max-w-lg mx-auto">
+            <p class="text-gray-700 dark:text-gray-300">Mentored the “Sparks” team during a college hackathon.</p>
+          </div>
+        </div>
+        <div class="achievement-card flex items-center gap-4" data-aos="fade-up">
+          <img src="https://img.icons8.com/color/48/medal.png" alt="Medal" class="w-10 h-10 hover:scale-110 transition-transform duration-300" />
+          <div class="box w-full max-w-lg mx-auto">
+            <p class="text-gray-700 dark:text-gray-300">Acted as Student Placement Coordinator, streamlining communication for 100+ peers.</p>
+          </div>
+        </div>
+        <div class="achievement-card flex items-center gap-4" data-aos="fade-up">
+          <img src="https://img.icons8.com/color/48/leaderboard.png" alt="Leaderboard" class="w-10 h-10 hover:scale-110 transition-transform duration-300" />
+          <div class="box w-full max-w-lg mx-auto">
+            <p class="text-gray-700 dark:text-gray-300">Served as Class Representative (CR), addressing student concerns.</p>
+          </div>
+        </div>
+        <div class="achievement-card flex items-center gap-4" data-aos="fade-up">
+          <img src="https://img.icons8.com/color/48/event-accepted-tentatively.png" alt="Event" class="w-10 h-10 hover:scale-110 transition-transform duration-300" />
+          <div class="box w-full max-w-lg mx-auto">
+            <p class="text-gray-700 dark:text-gray-300">Assisted in organizing college events for 300+ participants.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer class="py-16 footer-bg text-white">
+    <div class="container mx-auto px-6 text-center" data-aos="fade-up">
+      <h2 class="text-2xl font-bold mb-4">Let’s Connect!</h2>
+      <div class="flex justify-center gap-4">
+        <a href="#" class="hover:text-blue-300">
+          <img src="https://img.icons8.com/color/48/linkedin.png" alt="LinkedIn" class="w-8 h-8 hover:animate-bounce transition-transform duration-300" />
+        </a>
+        <a href="#" class="hover:text-pink-300">
+          <img src="https://img.icons8.com/color/48/github.png" alt="GitHub" class="w-8 h-8 hover:animate-bounce transition-transform duration-300" />
+        </a>
+        <a href="#" class="hover:text-green-300">
+          <img src="https://img.icons8.com/color/48/email.png" alt="Email" class="w-8 h-8 hover:animate-bounce transition-transform duration-300" />
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Dark Mode Toggle
+    const toggle = document.getElementById('darkModeToggle');
+    const body = document.body;
+    const modeIcon = document.getElementById('modeIcon');
+
+    toggle.addEventListener('click', () => {
+      if (body.classList.contains('light-mode')) {
+        body.classList.remove('light-mode');
+        body.classList.add('dark-mode');
+        modeIcon.src = "https://img.icons8.com/color/48/moon-symbol.png"; // Moon icon for dark mode
+      } else {
+        body.classList.remove('dark-mode');
+        body.classList.add('light-mode');
+        modeIcon.src = "https://img.icons8.com/color/48/sun--v1.png"; // Sun icon for light mode
+      }
+    });
+
+    // Tech Stack Scrolling Animation
+    const techStack = document.querySelector('.scrolling-tech-stack');
+    let scrollInterval;
+
+    function startScroll() {
+      scrollInterval = setInterval(() => {
+        techStack.scrollBy({ left: 1, behavior: 'smooth' });
+        if (techStack.scrollLeft + techStack.clientWidth >= techStack.scrollWidth) {
+          techStack.scrollTo({ left: 0, behavior: 'smooth' });
+        }
+      }, 20);
+    }
+
+    function stopScroll() {
+      clearInterval(scrollInterval);
+    }
+
+    techStack.addEventListener('mouseenter', stopScroll);
+    techStack.addEventListener('mouseleave', startScroll);
+
+    startScroll();
+
+    // AOS Initialization
+    AOS.init();
+  </script>
+</body>
+</html>
