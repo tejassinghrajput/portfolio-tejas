@@ -139,6 +139,43 @@
             transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
+
+        @media (max-width: 768px) {
+            .timeline-item {
+                flex-direction: column;
+                text-align: left;
+                padding-left: 2rem;
+                margin-left: 1rem;
+            }
+
+            .timeline-container .absolute {
+                left: 0;
+            }
+
+            .timeline-item .w-[45%] {
+                width: 100%;
+                text-align: left;
+                padding: 0;
+                margin-bottom: 0.5rem;
+            }
+
+            .timeline-item .absolute {
+                left: 0;
+                top: 50%;
+            }
+        }
+
+        /* Hover Effects */
+        .timeline-item:hover .absolute div:first-child {
+            animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+
+        @keyframes ping {
+            75%, 100% {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
         
     </style>
 </head>
@@ -206,22 +243,59 @@
     <!-- Experience Timeline -->
     <section id="experience" class="py-24 px-8 lg:px-24">
         <h2 class="text-4xl font-bold text-center mb-16">Professional Journey</h2>
-        
-        <div class="timeline">
+    
+        <div class="timeline-container relative max-w-4xl mx-auto">
+            <!-- Vertical Line -->
+            <div class="absolute left-[50%] top-0 bottom-0 w-[2px] bg-gradient-to-b from-purple-500 to-pink-500"></div>
+    
             <!-- Timeline Items -->
-            <div class="timeline-item left" data-aos="fade-right">
-                <div class="timeline-content glass p-8 rounded-2xl">
-                    <h3 class="text-2xl font-bold mb-4">Senior Developer @TechCo</h3>
-                    <div class="timeline-date">2020-Present</div>
-                    <ul class="space-y-3">
-                        <li class="flex items-center">
-                            <div class="w-2 h-2 bg-purple-500 rounded-full mr-3"></div>
-                            Led team of 15 developers...
-                        </li>
-                    </ul>
+            <div class="relative">
+                <!-- Experience Item 1 -->
+                <div class="timeline-item group flex justify-between items-center w-full mb-16" data-aos="fade-up">
+                    <!-- Left Content -->
+                    <div class="w-[45%] text-right pr-12 group-hover:transform group-hover:-translate-x-2 transition-transform duration-300">
+                        <h3 class="text-xl font-bold mb-2">SDE Intern @ Shipglobal</h3>
+                        <p class="text-gray-600 dark:text-gray-400"></p>
+                    </div>
+    
+                    <!-- Center Dot -->
+                    <div class="absolute left-1/2 -translate-x-1/2 w-4 h-4">
+                        <div class="absolute w-full h-full bg-purple-500 rounded-full animate-ping opacity-75"></div>
+                        <div class="relative w-full h-full bg-purple-500 rounded-full"></div>
+                    </div>
+    
+                    <!-- Right Content -->
+                    <div class="w-[45%] pl-12 group-hover:transform group-hover:translate-x-2 transition-transform duration-300">
+                        <span class="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-white text-sm">
+                            September 2024 - Present
+                        </span>
+                    </div>
                 </div>
+    
+                <!-- Experience Item 2 -->
+                <div class="timeline-item group flex justify-between items-center w-full mb-16" data-aos="fade-up" data-aos-delay="100">
+                    <!-- Left Content -->
+                    <div class="w-[45%] text-right pr-12 group-hover:transform group-hover:-translate-x-2 transition-transform duration-300">
+                        <h3 class="text-xl font-bold mb-2">SDE Intern @Naest Tutors</h3>
+                        <p class="text-gray-600 dark:text-gray-400">Developed scalable web applications</p>
+                    </div>
+    
+                    <!-- Center Dot -->
+                    <div class="absolute left-1/2 -translate-x-1/2 w-4 h-4">
+                        <div class="absolute w-full h-full bg-pink-500 rounded-full animate-ping opacity-75"></div>
+                        <div class="relative w-full h-full bg-pink-500 rounded-full"></div>
+                    </div>
+    
+                    <!-- Right Content -->
+                    <div class="w-[45%] pl-12 group-hover:transform group-hover:translate-x-2 transition-transform duration-300">
+                        <span class="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-white text-sm">
+                            2018 - 2020
+                        </span>
+                    </div>
+                </div>
+    
+                <!-- Add more items following the same pattern -->
             </div>
-            <!-- Add more timeline items -->
         </div>
     </section>
 
