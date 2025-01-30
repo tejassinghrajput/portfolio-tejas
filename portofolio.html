@@ -18,6 +18,7 @@
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.4.1/swiper-bundle.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
 
     <!-- Custom Fonts -->
     <style>
@@ -138,6 +139,7 @@
             transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
+        
     </style>
 </head>
 <body>
@@ -246,25 +248,111 @@
     </section>
 
     <!-- Interactive Skill Visualization -->
+    
     <section id="skills" class="py-24 px-8 lg:px-24">
         <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl font-bold text-center mb-16">Technical Arsenal</h2>
+            <h2 class="text-4xl font-bold text-center mb-16 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
+                Technical Arsenal
+            </h2>
             
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                <div class="skill-radar mx-auto" data-aos="zoom-in"></div>
-                
-                <div class="space-y-8">
-                    <div class="skill-bar glass p-4 rounded-xl" data-skill="React">
-                        <div class="flex justify-between mb-2">
-                            <span>React Ecosystem</span>
-                            <span>95%</span>
-                        </div>
-                        <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
-                            <div class="h-full bg-purple-500 transition-all duration-1000" style="width: 0"></div>
-                        </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
+                <!-- Python -->
+                <div class="tech-card group" data-aos="zoom-in">
+                    <div class="relative p-6 rounded-xl hover:shadow-lg transition-all duration-300 
+                                backdrop-blur-md bg-white/5 border border-gray-200/20 
+                                flex flex-col items-center justify-center gap-3
+                                hover:bg-white/10 hover:-translate-y-1">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" 
+                             alt="Python" 
+                             class="w-16 h-16 group-hover:scale-110 transition-transform duration-300"/>
                     </div>
-                    <!-- Add more skill bars -->
                 </div>
+    
+                <!-- Java -->
+                <div class="tech-card group" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="relative p-6 rounded-xl hover:shadow-lg transition-all duration-300 
+                                backdrop-blur-md bg-white/5 border border-gray-200/20 
+                                flex flex-col items-center justify-center gap-3
+                                hover:bg-white/10 hover:-translate-y-1">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" 
+                             alt="Java" 
+                             class="w-16 h-16 group-hover:scale-110 transition-transform duration-300"/>
+                    </div>
+                </div>
+    
+                <!-- C++ -->
+                <div class="tech-card group" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="relative p-6 rounded-xl hover:shadow-lg transition-all duration-300 
+                                backdrop-blur-md bg-white/5 border border-gray-200/20 
+                                flex flex-col items-center justify-center gap-3
+                                hover:bg-white/10 hover:-translate-y-1">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" 
+                             alt="C++" 
+                             class="w-16 h-16 group-hover:scale-110 transition-transform duration-300"/>
+                    </div>
+                </div>
+    
+                <!-- JavaScript -->
+                <div class="tech-card group" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="relative p-6 rounded-xl hover:shadow-lg transition-all duration-300 
+                                backdrop-blur-md bg-white/5 border border-gray-200/20 
+                                flex flex-col items-center justify-center gap-3
+                                hover:bg-white/10 hover:-translate-y-1">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" 
+                             alt="JavaScript" 
+                             class="w-16 h-16 group-hover:scale-110 transition-transform duration-300"/>
+                    </div>
+                </div>
+    
+                <!-- React -->
+                <div class="tech-card group" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="relative p-6 rounded-xl hover:shadow-lg transition-all duration-300 
+                                backdrop-blur-md bg-white/5 border border-gray-200/20 
+                                flex flex-col items-center justify-center gap-3
+                                hover:bg-white/10 hover:-translate-y-1">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" 
+                             alt="React" 
+                             class="w-16 h-16 group-hover:scale-110 transition-transform duration-300"/>
+                    </div>
+                </div>
+    
+                <!-- Node.js -->
+                <div class="tech-card group" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="relative p-6 rounded-xl hover:shadow-lg transition-all duration-300 
+                                backdrop-blur-md bg-white/5 border border-gray-200/20 
+                                flex flex-col items-center justify-center gap-3
+                                hover:bg-white/10 hover:-translate-y-1">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" 
+                             alt="Node.js" 
+                             class="w-16 h-16 group-hover:scale-110 transition-transform duration-300"/>
+                    </div>
+                </div>
+    
+                <!-- TypeScript -->
+                <div class="tech-card group" data-aos="zoom-in" data-aos-delay="600">
+                    <div class="relative p-6 rounded-xl hover:shadow-lg transition-all duration-300 
+                                backdrop-blur-md bg-white/5 border border-gray-200/20 
+                                flex flex-col items-center justify-center gap-3
+                                hover:bg-white/10 hover:-translate-y-1">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" 
+                             alt="TypeScript" 
+                             class="w-16 h-16 group-hover:scale-110 transition-transform duration-300"/>
+                    </div>
+                </div>
+    
+                <!-- MongoDB -->
+                <div class="tech-card group" data-aos="zoom-in" data-aos-delay="700">
+                    <div class="relative p-6 rounded-xl hover:shadow-lg transition-all duration-300 
+                                backdrop-blur-md bg-white/5 border border-gray-200/20 
+                                flex flex-col items-center justify-center gap-3
+                                hover:bg-white/10 hover:-translate-y-1">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" 
+                             alt="MongoDB" 
+                             class="w-16 h-16 group-hover:scale-110 transition-transform duration-300"/>
+                    </div>
+                </div>
+    
+                <!-- Add more tech cards as needed -->
             </div>
         </div>
     </section>
@@ -338,6 +426,29 @@
     <script>
         // Comprehensive Animation System
         document.addEventListener('DOMContentLoaded', () => {
+            // Initialize AOS with custom settings for tech cards
+            AOS.init({
+                disable: window.innerWidth < 768  || window.innerWidth < 1920,
+                duration: 800,
+                once: true,
+                offset: 100,
+                delay: 100
+            });
+    
+            // Optional: Add GSAP animations for more complex effects
+            gsap.utils.toArray('.tech-card').forEach((card, i) => {
+                gsap.from(card, {
+                    opacity: 0,
+                    y: 50,
+                    duration: 0.8,
+                    delay: i * 0.1,
+                    scrollTrigger: {
+                        trigger: card,
+                        start: 'top 80%',
+                        toggleActions: 'play none none reverse'
+                    }
+                });
+            });
             // Initialize AOS
             AOS.init({
                 duration: 800,
