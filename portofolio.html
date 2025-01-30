@@ -140,40 +140,41 @@
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
 
-        @media (max-width: 768px) {
-            .timeline-item {
-                flex-direction: column;
-                text-align: left;
-                padding-left: 2rem;
-                margin-left: 1rem;
+        @media (min-width: 768px) {
+            .timeline-item:nth-child(even) .hidden.md\:flex {
+                flex-direction: row-reverse;
             }
+            
+            .timeline-item:nth-child(even) .w-[45%].text-right {
+                text-align: left;
+            }
+            
+            .timeline-item:nth-child(even) .flex.items-center.justify-end {
+                justify-content: start;
+                flex-direction: row-reverse;
+            }
+            
+            .timeline-item:nth-child(even) .w-[45%].pl-12 {
+                padding-left: 0;
+                padding-right: 12px;
+            }
+        }
 
+        @media (max-width: 767px) {
+            .timeline-container {
+                padding-left: 1rem;
+            }
+            
             .timeline-container .absolute {
-                left: 0;
+                left: 1rem;
             }
 
-            .timeline-item .w-[45%] {
-                width: 100%;
-                text-align: left;
-                padding: 0;
-                margin-bottom: 0.5rem;
+            .timeline-item .glass {
+                transition: transform 0.3s ease;
             }
 
-            .timeline-item .absolute {
-                left: 0;
-                top: 50%;
-            }
-        }
-
-        /* Hover Effects */
-        .timeline-item:hover .absolute div:first-child {
-            animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
-        }
-
-        @keyframes ping {
-            75%, 100% {
-                transform: scale(2);
-                opacity: 0;
+            .timeline-item .glass:hover {
+                transform: translateX(0.5rem);
             }
         }
         
@@ -245,56 +246,147 @@
         <h2 class="text-4xl font-bold text-center mb-16">Professional Journey</h2>
     
         <div class="timeline-container relative max-w-4xl mx-auto">
-            <!-- Vertical Line -->
+            <!-- Vertical Line - Show on both mobile and desktop -->
             <div class="absolute left-[50%] top-0 bottom-0 w-[2px] bg-gradient-to-b from-purple-500 to-pink-500"></div>
     
             <!-- Timeline Items -->
-            <div class="relative">
+            <div class="relative space-y-12 md:space-y-24">
                 <!-- Experience Item 1 -->
-                <div class="timeline-item group flex justify-between items-center w-full mb-16" data-aos="fade-up">
-                    <!-- Left Content -->
-                    <div class="w-[45%] text-right pr-12 group-hover:transform group-hover:-translate-x-2 transition-transform duration-300">
-                        <h3 class="text-xl font-bold mb-2">SDE Intern @ Shipglobal</h3>
-                        <p class="text-gray-600 dark:text-gray-400"></p>
+                <div class="timeline-item group">
+                    <!-- Desktop Layout -->
+                    <div class="hidden md:flex justify-between items-center w-full">
+                        <!-- Left Content -->
+                        <div class="w-[45%] text-right">
+                            <div class="flex items-center justify-end gap-4">
+                                <div>
+                                    <h3 class="text-xl font-bold mb-2">SDE Intern</h3>
+                                    <div class="flex items-center justify-end gap-2">
+                                        <span class="text-lg font-semibold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
+                                            @ShipGlobal
+                                        </span>
+                                        <img src="https://media.licdn.com/dms/image/v2/D560BAQHiomCBxCcGeQ/company-logo_200_200/company-logo_200_200/0/1729835765269/shipglobalin_logo?e=2147483647&v=beta&t=_Vy0y7_Tow7F8sS7ORt0fKMO492-0RSNDIEe2LycOLA" 
+                                             alt="ShipGlobal" 
+                                             class="w-8 h-8 rounded-full object-contain bg-white/10 p-1"
+                                            />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <!-- Center Dot -->
+                        <div class="absolute left-1/2 -translate-x-1/2 w-4 h-4">
+                            <div class="absolute w-full h-full bg-purple-500 rounded-full animate-ping opacity-75"></div>
+                            <div class="relative w-full h-full bg-purple-500 rounded-full"></div>
+                        </div>
+    
+                        <!-- Right Content -->
+                        <div class="w-[45%] pl-12">
+                            <span class="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-white text-sm">
+                                September 2024 - Present
+                            </span>
+                        </div>
                     </div>
     
-                    <!-- Center Dot -->
-                    <div class="absolute left-1/2 -translate-x-1/2 w-4 h-4">
-                        <div class="absolute w-full h-full bg-purple-500 rounded-full animate-ping opacity-75"></div>
-                        <div class="relative w-full h-full bg-purple-500 rounded-full"></div>
-                    </div>
+                    <!-- Mobile Layout -->
+                    <div class="md:hidden relative">
+                        <!-- Vertical connector dot -->
+                        <div class="absolute left-0 top-6 w-4 h-4 -translate-x-1/2">
+                            <div class="absolute w-full h-full bg-purple-500 rounded-full animate-ping opacity-75"></div>
+                            <div class="relative w-full h-full bg-purple-500 rounded-full"></div>
+                        </div>
     
-                    <!-- Right Content -->
-                    <div class="w-[45%] pl-12 group-hover:transform group-hover:translate-x-2 transition-transform duration-300">
-                        <span class="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-white text-sm">
-                            September 2024 - Present
-                        </span>
+                        <!-- Content with left padding to accommodate line -->
+                        <div class="glass p-6 rounded-xl ml-8 relative">
+                            <div class="flex items-center gap-4 mb-4">
+                                <img src="https://media.licdn.com/dms/image/v2/D560BAQHiomCBxCcGeQ/company-logo_200_200/company-logo_200_200/0/1729835765269/shipglobalin_logo?e=2147483647&v=beta&t=_Vy0y7_Tow7F8sS7ORt0fKMO492-0RSNDIEe2LycOLA" 
+                                     alt="ShipGlobal" 
+                                     class="w-12 h-12 rounded-full object-contain bg-white/10 p-1"
+                                    />
+                                <div>
+                                    <h3 class="text-xl font-bold">SDE Intern</h3>
+                                    <span class="text-lg font-semibold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
+                                        @ShipGlobal
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
+                                </svg>
+                                <span>September 2024 - Present</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
     
-                <!-- Experience Item 2 -->
-                <div class="timeline-item group flex justify-between items-center w-full mb-16" data-aos="fade-up" data-aos-delay="100">
-                    <!-- Left Content -->
-                    <div class="w-[45%] text-right pr-12 group-hover:transform group-hover:-translate-x-2 transition-transform duration-300">
-                        <h3 class="text-xl font-bold mb-2">SDE Intern @Naest Tutors</h3>
-                        <p class="text-gray-600 dark:text-gray-400">Developed scalable web applications</p>
+                <!-- Add more timeline items following the same pattern -->
+
+                <div class="timeline-item group">
+                    <!-- Desktop Layout -->
+                    <div class="hidden md:flex justify-between items-center w-full">
+                        <!-- Left Content -->
+                        <div class="w-[45%] text-right">
+                            <div class="flex items-center justify-end gap-4">
+                                <div>
+                                    <h3 class="text-xl font-bold mb-2">SDE Intern</h3>
+                                    <div class="flex items-center justify-end gap-2">
+                                        <span class="text-lg font-semibold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
+                                            @Naest Tutors
+                                        </span>
+                                        <img src="https://media.licdn.com/dms/image/v2/D560BAQEIr22zaQPihw/company-logo_200_200/company-logo_200_200/0/1695820681667/naesttutors_logo?e=2147483647&v=beta&t=EUit3Fbav5W_X9ZJXk0jgHu768qaC75UkXjfRLOr1Uo" 
+                                             alt="ShipGlobal" 
+                                             class="w-8 h-8 rounded-full object-contain bg-white/10 p-1"
+                                            />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <!-- Center Dot -->
+                        <div class="absolute left-1/2 -translate-x-1/2 w-4 h-4">
+                            <div class="absolute w-full h-full bg-purple-500 rounded-full animate-ping opacity-75"></div>
+                            <div class="relative w-full h-full bg-purple-500 rounded-full"></div>
+                        </div>
+    
+                        <!-- Right Content -->
+                        <div class="w-[45%] pl-12">
+                            <span class="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-white text-sm">
+                                March 2024 - August 2024
+                            </span>
+                        </div>
                     </div>
     
-                    <!-- Center Dot -->
-                    <div class="absolute left-1/2 -translate-x-1/2 w-4 h-4">
-                        <div class="absolute w-full h-full bg-pink-500 rounded-full animate-ping opacity-75"></div>
-                        <div class="relative w-full h-full bg-pink-500 rounded-full"></div>
-                    </div>
+                    <!-- Mobile Layout -->
+                    <div class="md:hidden relative">
+                        <!-- Vertical connector dot -->
+                        <div class="absolute left-0 top-6 w-4 h-4 -translate-x-1/2">
+                            <div class="absolute w-full h-full bg-purple-500 rounded-full animate-ping opacity-75"></div>
+                            <div class="relative w-full h-full bg-purple-500 rounded-full"></div>
+                        </div>
     
-                    <!-- Right Content -->
-                    <div class="w-[45%] pl-12 group-hover:transform group-hover:translate-x-2 transition-transform duration-300">
-                        <span class="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-white text-sm">
-                            2018 - 2020
-                        </span>
+                        <!-- Content with left padding to accommodate line -->
+                        <div class="glass p-6 rounded-xl ml-8 relative">
+                            <div class="flex items-center gap-4 mb-4">
+                                <img src="https://media.licdn.com/dms/image/v2/D560BAQEIr22zaQPihw/company-logo_200_200/company-logo_200_200/0/1695820681667/naesttutors_logo?e=2147483647&v=beta&t=EUit3Fbav5W_X9ZJXk0jgHu768qaC75UkXjfRLOr1Uo" 
+                                     alt="Naest" 
+                                     class="w-12 h-12 rounded-full object-contain bg-white/10 p-1"
+                                    />
+                                <div>
+                                    <h3 class="text-xl font-bold">SDE Intern</h3>
+                                    <span class="text-lg font-semibold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
+                                        @Naest Tutors
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
+                                </svg>
+                                <span>March 2024 - August 2024</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-    
-                <!-- Add more items following the same pattern -->
             </div>
         </div>
     </section>
