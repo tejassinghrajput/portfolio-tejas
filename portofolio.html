@@ -1,466 +1,657 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tejas Kumar Singh - Portfolio</title>
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Animate.css -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-  <!-- AOS -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <style>
-    /* Custom Styles */
-    body {
-      font-family: 'Arial', sans-serif;
-      margin: 0;
-      padding: 0;
-      transition: background-color 0.5s ease, color 0.5s ease;
-    }
-    .light-mode {
-      background: linear-gradient(135deg, #e0f7fa, #b3e5fc);
-      color: #333333;
-    }
-    .dark-mode {
-      background: linear-gradient(135deg, #1e1e2f, #2c3e50);
-      color: #e0e0e0;
-    }
-    .glassmorphism {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 1rem;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-    .split-screen {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      align-items: center;
-    }
-    .scrolling-tech-stack {
-      display: flex;
-      gap: 1.5rem;
-      white-space: nowrap;
-      overflow: hidden;
-      width: 100%;
-      height: 6rem;
-    }
-    .scrolling-tech-stack div {
-      display: inline-block;
-      animation: scroll-left 20s linear infinite;
-    }
-    @keyframes scroll-left {
-      0% {
-        transform: translateX(100%);
-      }
-      100% {
-        transform: translateX(-100%);
-      }
-    }
-    .scrolling-tech-stack:hover div {
-      animation-play-state: paused;
-    }
-    .tech-icon {
-      width: 4rem;
-      height: 4rem;
-      object-fit: contain;
-      margin-right: 1rem;
-    }
-    .project-card img,
-    .achievement-card img {
-      width: 4rem;
-      height: 4rem;
-      object-fit: cover;
-      border-radius: 50%;
-    }
-    .footer-bg {
-      background: linear-gradient(135deg, #ff7e5f, #feb47b);
-    }
-    /* Navbar Styles */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      background: linear-gradient(135deg, #6a11cb, #2575fc);
-      color: white;
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 1000;
-    }
-    .navbar-brand {
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
-    .navbar-links {
-      display: flex;
-      gap: 1rem;
-    }
-    .navbar-links a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .navbar-links a:hover {
-      text-decoration: underline;
-    }
-    .hamburger {
-      display: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
-    @media (max-width: 768px) {
-      .navbar-links {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 60px;
-        right: 0;
-        background: #1e1e2f;
-        padding: 1rem;
-        border-radius: 0.5rem;
-      }
-      .navbar-links.active {
-        display: flex;
-      }
-      .hamburger {
-        display: block;
-      }
-    }
-  </style>
-</head>
-<body class="light-mode">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tejas Kumar Singh's futuristic portfolio showcasing cutting-edge web development projects">
+    <title>Tejas Kumar Singh | Visionary Developer 2025</title>
 
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="navbar-brand">Tejas Kumar Singh</div>
-    <div class="navbar-links" id="navbarLinks">
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#education">Education</a>
-      <a href="#experience">Experience</a>
-      <a href="#projects">Projects</a>
-      <a href="#skills">Skills</a>
-      <a href="#achievements">Achievements</a>
-      <a href="#contact">Contact</a>
-    </div>
-    <div class="hamburger" id="hamburger">&#9776;</div>
-    <button id="darkModeToggle" class="ml-4 bg-gray-200 dark:bg-gray-700 p-2 rounded-full shadow-md">
-      <img src="https://img.icons8.com/color/48/sun--v1.png" alt="Light Mode" id="modeIcon" class="w-6 h-6" />
-    </button>
-  </nav>
+    <!-- CDN Imports -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.4.1/swiper-bundle.css">
 
-  <!-- Header Section -->
-  <header class="relative h-screen flex flex-col justify-center items-center text-center header-bg" id="home">
-    <div class="glassmorphism w-full max-w-2xl mx-auto p-8 space-y-6 animate__animated animate__fadeIn">
-      <h1 class="text-5xl font-bold text-white">Tejas Kumar Singh</h1>
-      <div class="flex flex-col md:flex-row gap-4 items-center">
-        <div class="flex items-center gap-2 text-white">
-          <img src="https://img.icons8.com/color/48/phone.png" alt="Phone" class="w-8 h-8 hover:animate-bounce transition-transform duration-300" />
-          <span>+91 7652050611</span>
-        </div>
-        <div class="flex items-center gap-2 text-white">
-          <img src="https://img.icons8.com/color/48/email.png" alt="Email" class="w-8 h-8 hover:animate-bounce transition-transform duration-300" />
-          <span>singhtejas0001@gmail.com</span>
-        </div>
-        <div class="flex items-center gap-4 text-white">
-          <a href="#" class="hover:text-blue-300">
-            <img src="https://img.icons8.com/color/48/linkedin.png" alt="LinkedIn" class="w-8 h-8 hover:animate-bounce transition-transform duration-300" />
-          </a>
-          <a href="#" class="hover:text-pink-300">
-            <img src="https://img.icons8.com/color/48/github.png" alt="GitHub" class="w-8 h-8 hover:animate-bounce transition-transform duration-300" />
-          </a>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- About Section -->
-  <section id="about" class="py-16">
-    <div class="container mx-auto px-6">
-      <h2 class="text-3xl font-bold mb-8 text-colorful" data-aos="fade-up">About Me</h2>
-      <div class="split-screen">
-        <div class="glassmorphism p-6" data-aos="fade-right">
-          <h3 class="text-2xl font-semibold text-purple-500">Who I Am</h3>
-          <p>I am a passionate software developer with expertise in building scalable web applications.</p>
-          <p>My journey in technology began with a fascination for problem-solving and innovation.</p>
-          <p>I specialize in backend development but also enjoy working on frontend projects.</p>
-          <p>I love collaborating with teams to deliver high-quality solutions that make an impact.</p>
-          <p>When I'm not coding, I enjoy reading tech blogs and exploring new technologies.</p>
-        </div>
-        <div class="glassmorphism p-6" data-aos="fade-left">
-          <h3 class="text-2xl font-semibold text-green-500">What I Do</h3>
-          <p>I develop RESTful APIs, optimize databases, and automate processes.</p>
-          <p>I have experience with CodeIgniter 4, Node.js, and MongoDB.</p>
-          <p>I focus on creating user-friendly interfaces and seamless experiences.</p>
-          <p>I am committed to continuous learning and staying updated with the latest trends.</p>
-          <p>Let's build something amazing together!</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Education Section -->
-  <section id="education" class="py-16">
-    <div class="container mx-auto px-6 text-center">
-      <h2 class="text-3xl font-bold mb-8 text-colorful" data-aos="fade-up">Education</h2>
-      <div class="space-y-8">
-        <div class="timeline-item" data-aos="slide-right">
-          <div class="flex items-center gap-4">
-            <img src="https://img.icons8.com/color/48/university.png" alt="University" class="w-10 h-10" />
-            <div class="glassmorphism p-4 w-full max-w-lg mx-auto">
-              <h3 class="text-xl font-semibold hover:text-blue-500 transition-colors duration-300">Galgotias University</h3>
-              <p>Bachelor of Technology, Computer Science and Engineering</p>
-              <p><strong>90.30%</strong></p>
-              <p>Greater Noida | Oct. 2021 – May 2025</p>
-            </div>
-          </div>
-        </div>
-        <div class="timeline-item" data-aos="slide-left">
-          <div class="flex items-center gap-4">
-            <img src="https://img.icons8.com/color/48/school.png" alt="School" class="w-10 h-10" />
-            <div class="glassmorphism p-4 w-full max-w-lg mx-auto">
-              <h3 class="text-xl font-semibold hover:text-blue-500 transition-colors duration-300">CBSE Private Candidate</h3>
-              <p>Intermediate</p>
-              <p><strong>61.80%</strong></p>
-              <p>New Delhi | Aug. 2020 – May 2021</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Experience Section -->
-  <section id="experience" class="py-16">
-    <div class="container mx-auto px-6 text-center">
-      <h2 class="text-3xl font-bold mb-8 text-colorful" data-aos="fade-up">Experience</h2>
-      <div class="space-y-8">
-        <div class="experience-item" data-aos="fade-up">
-          <div class="glassmorphism p-6 w-full max-w-lg mx-auto">
-            <h3 class="text-xl font-semibold text-blue-500">ShipGlobal | Backend Developer</h3>
-            <p>New Delhi | September 2024 – Present</p>
-            <div class="mt-4 space-y-2">
-              <div>Developed scalable RESTful APIs using CodeIgniter 4.</div>
-              <div>Optimized MySQL queries, reducing execution time by 20%.</div>
-              <div>Automated shipment processing, improving on-time delivery by 10%.</div>
-            </div>
-          </div>
-        </div>
-        <div class="experience-item" data-aos="fade-up">
-          <div class="glassmorphism p-6 w-full max-w-lg mx-auto">
-            <h3 class="text-xl font-semibold text-green-500">Naest Tutors | SDE Intern</h3>
-            <p>Greater Noida | March 2024 – August 2024</p>
-            <div class="mt-4 space-y-2">
-              <div>Built scalable web applications using HTML, CSS, JavaScript, PHP.</div>
-              <div>Reduced back-end processing time by 15%.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Projects Section -->
-  <section id="projects" class="py-16">
-    <div class="container mx-auto px-6 text-center">
-      <h2 class="text-3xl font-bold mb-8 text-colorful" data-aos="fade-up">Projects</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div class="project-card p-6 glassmorphism rounded-lg shadow-md" data-aos="flip-left">
-          <img src="https://img.icons8.com/color/48/online-shop.png" alt="E-Commerce" class="mx-auto mb-4" />
-          <div class="w-full">
-            <h3 class="text-xl font-semibold text-purple-500">E-Commerce System</h3>
-            <p class="mt-2 text-gray-700 dark:text-gray-300">HTML, CSS, JavaScript, Tailwind CSS, Bootstrap, PHP, MySQL, MongoDB</p>
-            <div class="mt-4 space-y-2">
-              <div>Fully responsive e-commerce platform.</div>
-              <div>Back-end in PHP for product listings and payment processing.</div>
-              <div>MySQL for inventory management, MongoDB for logs.</div>
-            </div>
-          </div>
-        </div>
-        <div class="project-card p-6 glassmorphism rounded-lg shadow-md" data-aos="flip-right">
-          <img src="https://img.icons8.com/color/48/chatbot.png" alt="Chatbot" class="mx-auto mb-4" />
-                    <div class="w-full">
-            <h3 class="text-xl font-semibold text-pink-500">Medical Chatbot</h3>
-            <p class="mt-2 text-gray-700 dark:text-gray-300">HTML, CSS, JavaScript, PHP, Node.js, Google Gemini API, MongoDB, OAuth</p>
-            <div class="mt-4 space-y-2">
-              <div>Developed a medical chatbot using Google Gemini API.</div>
-              <div>Integrated OAuth 2.0 for secure login.</div>
-              <div>MongoDB-based system for storing chat history.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Technical Skills Section -->
-  <section id="skills" class="py-16">
-    <div class="container mx-auto px-6 text-center">
-      <h2 class="text-3xl font-bold mb-8 text-colorful" data-aos="fade-up">Technical Skills</h2>
-      <div class="scrolling-tech-stack overflow-hidden relative w-full h-20 bg-colorful dark:bg-gray-800 rounded-lg shadow-md">
-        <div class="flex gap-4 absolute whitespace-nowrap animate-scroll">
-          <div class="flex-shrink-0"><img src="https://img.icons8.com/color/48/java-coffee-cup-logo.png" alt="Java" class="tech-icon" /></div>
-          <div class="flex-shrink-0"><img src="https://img.icons8.com/color/48/python.png" alt="Python" class="tech-icon" /></div>
-          <div class="flex-shrink-0"><img src="https://img.icons8.com/color/48/javascript.png" alt="JavaScript" class="tech-icon" /></div>
-          <div class="flex-shrink-0"><img src="https://img.icons8.com/color/48/html-5.png" alt="HTML" class="tech-icon" /></div>
-          <div class="flex-shrink-0"><img src="https://img.icons8.com/color/48/css3.png" alt="CSS" class="tech-icon" /></div>
-          <div class="flex-shrink-0"><img src="https://img.icons8.com/color/48/php-logo.png" alt="PHP" class="tech-icon" /></div>
-          <div class="flex-shrink-0"><img src="https://img.icons8.com/color/48/nodejs.png" alt="Node.js" class="tech-icon" /></div>
-          <div class="flex-shrink-0"><img src="https://img.icons8.com/color/48/react-native.png" alt="React" class="tech-icon" /></div>
-          <div class="flex-shrink-0"><img src="https://img.icons8.com/color/48/bootstrap.png" alt="Bootstrap" class="tech-icon" /></div>
-          <div class="flex-shrink-0"><img src="https://img.icons8.com/color/48/tailwindcss.png" alt="Tailwind CSS" class="tech-icon" /></div>
-          <div class="flex-shrink-0"><img src="https://img.icons8.com/color/48/database.png" alt="Database" class="tech-icon" /></div>
-          <div class="flex-shrink-0"><img src="https://img.icons8.com/color/48/git.png" alt="Git" class="tech-icon" /></div>
-          <div class="flex-shrink-0"><img src="https://img.icons8.com/color/48/github.png" alt="GitHub" class="tech-icon" /></div>
-          <div class="flex-shrink-0"><img src="https://img.icons8.com/color/48/npm.png" alt="NPM" class="tech-icon" /></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Achievements Section -->
-  <section id="achievements" class="py-16">
-    <div class="container mx-auto px-6 text-center">
-      <h2 class="text-3xl font-bold mb-8 text-colorful" data-aos="fade-up">Achievements</h2>
-      <div class="space-y-6">
-        <div class="achievement-card flex items-center gap-4" data-aos="fade-up">
-          <img src="https://img.icons8.com/color/48/trophy.png" alt="Trophy" class="w-10 h-10 hover:scale-110 transition-transform duration-300" />
-          <div class="glassmorphism p-4 w-full max-w-lg mx-auto">
-            <p class="text-gray-700 dark:text-gray-300">Mentored the “Sparks” team during a college hackathon.</p>
-          </div>
-        </div>
-        <div class="achievement-card flex items-center gap-4" data-aos="fade-up">
-          <img src="https://img.icons8.com/color/48/medal.png" alt="Medal" class="w-10 h-10 hover:scale-110 transition-transform duration-300" />
-          <div class="glassmorphism p-4 w-full max-w-lg mx-auto">
-            <p class="text-gray-700 dark:text-gray-300">Acted as Student Placement Coordinator, streamlining communication for 100+ peers.</p>
-          </div>
-        </div>
-        <div class="achievement-card flex items-center gap-4" data-aos="fade-up">
-          <img src="https://img.icons8.com/color/48/leaderboard.png" alt="Leaderboard" class="w-10 h-10 hover:scale-110 transition-transform duration-300" />
-          <div class="glassmorphism p-4 w-full max-w-lg mx-auto">
-            <p class="text-gray-700 dark:text-gray-300">Served as Class Representative (CR), addressing student concerns.</p>
-          </div>
-        </div>
-        <div class="achievement-card flex items-center gap-4" data-aos="fade-up">
-          <img src="https://img.icons8.com/color/48/event-accepted-tentatively.png" alt="Event" class="w-10 h-10 hover:scale-110 transition-transform duration-300" />
-          <div class="glassmorphism p-4 w-full max-w-lg mx-auto">
-            <p class="text-gray-700 dark:text-gray-300">Assisted in organizing college events for 300+ participants.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="py-16">
-    <div class="container mx-auto px-6 text-center">
-      <h2 class="text-3xl font-bold mb-8 text-colorful" data-aos="fade-up">Contact Me</h2>
-      <div class="glassmorphism p-6 w-full max-w-lg mx-auto rounded-lg shadow-md">
-        <div class="flex flex-col gap-4">
-          <div class="flex items-center gap-2">
-            <img src="https://img.icons8.com/color/48/phone.png" alt="Phone" class="w-8 h-8" />
-            <span>+91 7652050611</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <img src="https://img.icons8.com/color/48/email.png" alt="Email" class="w-8 h-8" />
-            <span>singhtejas0001@gmail.com</span>
-          </div>
-          <div class="flex items-center gap-4 justify-center">
-            <a href="#" class="hover:text-blue-300">
-              <img src="https://img.icons8.com/color/48/linkedin.png" alt="LinkedIn" class="w-8 h-8 hover:animate-bounce transition-transform duration-300" />
-            </a>
-            <a href="#" class="hover:text-pink-300">
-              <img src="https://img.icons8.com/color/48/github.png" alt="GitHub" class="w-8 h-8 hover:animate-bounce transition-transform duration-300" />
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer Section -->
-  <footer class="py-16 footer-bg text-white">
-    <div class="container mx-auto px-6 text-center" data-aos="fade-up">
-      <h2 class="text-2xl font-bold mb-4">Let’s Connect!</h2>
-      <div class="flex justify-center gap-4">
-        <a href="#" class="hover:text-blue-300">
-          <img src="https://img.icons8.com/color/48/linkedin.png" alt="LinkedIn" class="w-8 h-8 hover:animate-bounce transition-transform duration-300" />
-        </a>
-        <a href="#" class="hover:text-pink-300">
-          <img src="https://img.icons8.com/color/48/github.png" alt="GitHub" class="w-8 h-8 hover:animate-bounce transition-transform duration-300" />
-        </a>
-        <a href="#" class="hover:text-green-300">
-          <img src="https://img.icons8.com/color/48/email.png" alt="Email" class="w-8 h-8 hover:animate-bounce transition-transform duration-300" />
-        </a>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Scripts -->
-  <script>
-    // Dark Mode Toggle with Auto Detection
-    const toggle = document.getElementById('darkModeToggle');
-    const body = document.body;
-    const modeIcon = document.getElementById('modeIcon');
-
-    // Check system preference
-    const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    if (prefersDarkMode) {
-      body.classList.add('dark-mode');
-      modeIcon.src = "https://img.icons8.com/color/48/moon-symbol.png"; // Moon icon for dark mode
-    } else {
-      body.classList.add('light-mode');
-      modeIcon.src = "https://img.icons8.com/color/48/sun--v1.png"; // Sun icon for light mode
-    }
-
-    toggle.addEventListener('click', () => {
-      if (body.classList.contains('light-mode')) {
-        body.classList.remove('light-mode');
-        body.classList.add('dark-mode');
-        modeIcon.src = "https://img.icons8.com/color/48/moon-symbol.png"; // Moon icon for dark mode
-      } else {
-        body.classList.remove('dark-mode');
-        body.classList.add('light-mode');
-        modeIcon.src = "https://img.icons8.com/color/48/sun--v1.png"; // Sun icon for light mode
-      }
-    });
-
-    // Hamburger Menu Toggle
-    const hamburger = document.getElementById('hamburger');
-    const navbarLinks = document.getElementById('navbarLinks');
-    hamburger.addEventListener('click', () => {
-      navbarLinks.classList.toggle('active');
-    });
-
-    // Tech Stack Scrolling Animation
-    const techStack = document.querySelector('.scrolling-tech-stack');
-    let scrollInterval;
-
-    function startScroll() {
-      scrollInterval = setInterval(() => {
-        techStack.scrollBy({ left: 1, behavior: 'smooth' });
-        if (techStack.scrollLeft + techStack.clientWidth >= techStack.scrollWidth) {
-          techStack.scrollTo({ left: 0, behavior: 'smooth' });
+    <!-- Custom Fonts -->
+    <style>
+        @font-face {
+            font-family: 'Celinda';
+            src: url('fonts/Celinda.woff2') format('woff2');
         }
-      }, 20);
+        @font-face {
+            font-family: 'Qioba';
+            src: url('fonts/Qioba.woff2') format('woff2');
+        }
+        body {
+            font-family: 'Qioba', 'Poppins', sans-serif;
+        }
+        h1, h2, h3 {
+            font-family: 'Celinda', 'Orbitron', sans-serif;
+        }
+    </style>
+
+    <!-- Global Styles -->
+    <style>
+        :root {
+            /* Light Theme */
+            --primary-bg: #F8F9FA;
+            --text-primary: #2A2A2A;
+            --accent-purple: #6C63FF;
+            --neutral-grey: #E9ECEF;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            
+            /* Dark Theme */
+            --dark-bg: #0F0F1C;
+            --dark-text: #FFFFFF;
+            --neon-accent: #00FF9D;
+            --dark-glass: rgba(15, 15, 28, 0.5);
+        }
+
+        /* Base Styles */
+        body {
+            background: var(--primary-bg);
+            color: var(--text-primary);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-x: hidden;
+        }
+
+        [data-theme="dark"] body {
+            background: var(--dark-bg);
+            color: var(--dark-text);
+        }
+
+        /* 3D Particle Background */
+        #particle-container {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Glassmorphism Effect */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+
+        /* Neumorphism Effect */
+        .neu {
+            border-radius: 15px;
+            background: var(--primary-bg);
+            box-shadow:  9px 9px 18px #d1d1d1,
+                        -9px -9px 18px #ffffff;
+        }
+
+        [data-theme="dark"] .neu {
+            background: var(--dark-bg);
+            box-shadow:  9px 9px 18px #0a0a12,
+                        -9px -9px 18px #141426;
+        }
+
+        /* Timeline Structure */
+        .timeline {
+            position: relative;
+            padding: 50px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            width: 4px;
+            height: 100%;
+            background: var(--accent-purple);
+            transform: translateX(-50%);
+        }
+
+        /* Skill Visualization */
+        .skill-radar {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            position: relative;
+            background: conic-gradient(
+                var(--accent-purple) 0% 30%,
+                var(--neon-accent) 30% 65%,
+                #ff6b6b 65% 100%
+            );
+            mask: radial-gradient(transparent 50%, #000 51%);
+        }
+
+        /* Project Card Hover Effect */
+        .project-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            perspective: 1000px;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+    </style>
+</head>
+<body>
+    <!-- 3D Particle Background -->
+    <div id="particle-container"></div>
+
+    <!-- Dark Mode Toggle -->
+    <button id="theme-toggle" class="fixed top-8 right-8 z-50 p-3 rounded-full glass">
+        <i class="fas fa-moon text-purple-600"></i>
+    </button>
+
+    <!-- Hero Section -->
+    <section id="hero" class="min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div class="text-center z-10">
+            <h1 class="text-8xl font-bold mb-6" data-aos="zoom-in-down" data-aos-duration="800">
+                <span class="text-gradient">Tejas Kumar</span> Singh
+            </h1>
+            <div class="typewriter-container mb-8">
+                <p class="text-2xl font-mono" id="typewriter"></p>
+            </div>
+            <div class="flex gap-6 justify-center" data-aos="fade-up" data-aos-delay="400">
+                <button class="cta-btn glass px-8 py-4 rounded-xl hover:scale-105 transition-transform">
+                    View Resume <i class="fas fa-download ml-2"></i>
+                </button>
+                <button class="cta-btn neu px-8 py-4 rounded-xl hover:scale-105 transition-transform"
+                        data-scroll-to="contact">
+                    Contact Me <i class="fas fa-chevron-right ml-2"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Animated Scroll Indicator -->
+        <div class="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce">
+            <div class="mouse-scroll"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="min-h-screen grid grid-cols-1 lg:grid-cols-2 gap-12 p-12 lg:p-24">
+        <!-- 3D Avatar Container -->
+        <div class="relative h-96 lg:h-auto" data-aos="fade-right">
+            <div class="absolute inset-0 glass rounded-3xl overflow-hidden">
+                <!-- Add 3D model here -->
+                <div id="avatar-3d" class="w-full h-full"></div>
+            </div>
+        </div>
+
+        <!-- Bio Content -->
+        <div class="flex flex-col justify-center" data-aos="fade-left">
+            <h2 class="text-5xl font-bold mb-8">Crafting Digital Excellence</h2>
+            <p class="text-lg leading-relaxed mb-6">
+                With 7+ years shaping digital experiences, I bridge the gap between...
+            </p>
+            <div class="grid grid-cols-2 gap-4">
+                <div class="p-4 glass rounded-xl hover:transform hover:scale-102 transition">
+                    <h3 class="text-xl font-bold mb-2">Full-Stack Mastery</h3>
+                    <p>React, Node.js, GraphQL, AWS</p>
+                </div>
+                <!-- Add more skill cards -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Timeline -->
+    <section id="experience" class="py-24 px-8 lg:px-24">
+        <h2 class="text-4xl font-bold text-center mb-16">Professional Journey</h2>
+        
+        <div class="timeline">
+            <!-- Timeline Items -->
+            <div class="timeline-item left" data-aos="fade-right">
+                <div class="timeline-content glass p-8 rounded-2xl">
+                    <h3 class="text-2xl font-bold mb-4">Senior Developer @TechCo</h3>
+                    <div class="timeline-date">2020-Present</div>
+                    <ul class="space-y-3">
+                        <li class="flex items-center">
+                            <div class="w-2 h-2 bg-purple-500 rounded-full mr-3"></div>
+                            Led team of 15 developers...
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Add more timeline items -->
+        </div>
+    </section>
+
+    <!-- Project Showcase -->
+    <section id="projects" class="py-24 px-8 lg:px-24">
+        <h2 class="text-4xl font-bold text-center mb-16">Innovation Portfolio</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+            <!-- Project Card -->
+            <div class="project-card glass p-6 rounded-2xl cursor-pointer"
+                 data-aos="flip-up"
+                 data-project-modal="project-1">
+                <div class="project-image h-48 rounded-xl overflow-hidden mb-4">
+                    <img src="project1.jpg" alt="AI Platform" class="w-full h-full object-cover" loading="lazy">
+                </div>
+                <h3 class="text-2xl font-bold mb-3">AI Analytics Platform</h3>
+                <div class="tech-stack flex flex-wrap gap-2">
+                    <span class="px-3 py-1 rounded-full bg-purple-100 text-purple-800">TensorFlow</span>
+                    <span class="px-3 py-1 rounded-full bg-blue-100 text-blue-800">React</span>
+                </div>
+            </div>
+            <!-- Add more project cards -->
+        </div>
+    </section>
+
+    <!-- Interactive Skill Visualization -->
+    <section id="skills" class="py-24 px-8 lg:px-24">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-16">Technical Arsenal</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="skill-radar mx-auto" data-aos="zoom-in"></div>
+                
+                <div class="space-y-8">
+                    <div class="skill-bar glass p-4 rounded-xl" data-skill="React">
+                        <div class="flex justify-between mb-2">
+                            <span>React Ecosystem</span>
+                            <span>95%</span>
+                        </div>
+                        <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+                            <div class="h-full bg-purple-500 transition-all duration-1000" style="width: 0"></div>
+                        </div>
+                    </div>
+                    <!-- Add more skill bars -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Carousel -->
+    <section id="achievements" class="py-24 px-8 lg:px-24">
+        <div class="swiper achievement-swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide glass p-8 rounded-2xl">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3 class="text-2xl font-bold mb-4">Best Open Source Project 2024</h3>
+                            <i class="fas fa-trophy text-4xl text-yellow-400"></i>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>Awarded for contributions to...</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add more swiper slides -->
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 px-8 lg:px-24">
+        <div class="max-w-4xl mx-auto glass p-12 rounded-3xl" data-aos="zoom-in">
+            <h2 class="text-4xl font-bold text-center mb-12">Let's Connect</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="space-y-6">
+                    <div class="contact-info flex items-center gap-4">
+                        <i class="fas fa-envelope text-2xl text-purple-500"></i>
+                        <a href="mailto:contact@tejaskumar.com" class="hover:text-purple-500 transition">contact@tejaskumar.com</a>
+                    </div>
+                    <!-- Add more contact info -->
+                </div>
+
+                <form id="contact-form" class="space-y-6">
+                    <div class="form-group">
+                        <input type="text" class="w-full glass p-4 rounded-xl" 
+                               placeholder="Your Name" required
+                               data-aos="fade-up">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="w-full glass p-4 rounded-xl" 
+                               placeholder="Email Address" required
+                               data-aos="fade-up" data-aos-delay="100">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="w-full glass p-4 rounded-xl h-32" 
+                                  placeholder="Your Message" required
+                                  data-aos="fade-up" data-aos-delay="200"></textarea>
+                    </div>
+                    <button type="submit" 
+                            class="w-full bg-purple-500 text-white py-4 rounded-xl hover:bg-purple-600 transition"
+                            data-aos="zoom-in">
+                        Send Message <i class="fas fa-paper-plane ml-2"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Micro-Interactions System -->
+    <div class="cursor-trail"></div>
+    <div class="hover-detect"></div>
+
+    <!-- Scripts -->
+    <script>
+        // Comprehensive Animation System
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize AOS
+            AOS.init({
+                duration: 800,
+                once: false,
+                mirror: true
+            });
+
+            // GSAP Scroll Triggers
+            gsap.registerPlugin(ScrollTrigger);
+            
+            // Animate all sections
+            gsap.utils.toArray('section').forEach(section => {
+                gsap.from(section, {
+                    scrollTrigger: {
+                        trigger: section,
+                        start: "top 80%",
+                        toggleActions: "play none none reverse"
+                    },
+                    opacity: 0,
+                    y: 50,
+                    duration: 1
+                });
+            });
+
+            // 3D Particle System
+            const initParticles = () => {
+                const scene = new THREE.Scene();
+                const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+                const renderer = new THREE.WebGLRenderer({ alpha: true });
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                document.getElementById('particle-container').appendChild(renderer.domElement);
+
+                // Create particles
+                const geometry = new THREE.BufferGeometry();
+                const vertices = [];
+                for (let i = 0; i < 5000; i++) {
+                    vertices.push(
+                        Math.random() * 2000 - 1000,
+                        Math.random() * 2000 - 1000,
+                        Math.random() * 2000 - 1000
+                    );
+                }
+                geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+                const material = new THREE.PointsMaterial({ size: 2, color: 0x6C63FF });
+                const particles = new THREE.Points(geometry, material);
+                scene.add(particles);
+                camera.position.z = 1000;
+
+                // Animation loop
+                const animate = () => {
+                    requestAnimationFrame(animate);
+                    particles.rotation.x += 0.0001;
+                    particles.rotation.y += 0.0001;
+                    renderer.render(scene, camera);
+                };
+                animate();
+            };
+
+            // Theme Management
+            const themeToggle = document.getElementById('theme-toggle');
+            themeToggle.addEventListener('click', () => {
+                const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+                document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
+                localStorage.setItem('theme', isDark ? 'light' : 'dark');
+            });
+
+            // Dynamic Skill Bars
+            document.querySelectorAll('.skill-bar').forEach(bar => {
+                  const percentage = bar.dataset.percentage || '95%';
+    const progress = bar.querySelector('.h-full');
+    progress.style.width = percentage;
+    gsap.from(progress, {
+      width: 0,
+      duration: 2,
+      ease: "power4.out",
+      scrollTrigger: {
+        trigger: bar,
+        start: "top 80%"
+      }
+    });
+  });
+
+  // Contact Form Handling
+  const contactForm = document.getElementById('contact-form');
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+    const originalText = submitBtn.innerHTML;
+    
+    // Add loading state
+    submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Sending...`;
+    submitBtn.disabled = true;
+
+    try {
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      // Success animation
+      gsap.to(submitBtn, {
+        backgroundColor: '#00FF9D',
+        color: '#000',
+        duration: 0.3,
+        onComplete: () => {
+          contactForm.reset();
+          submitBtn.innerHTML = `${originalText} <i class="fas fa-check ml-2"></i>`;
+          setTimeout(() => {
+            gsap.to(submitBtn, {
+              backgroundColor: '#6C63FF',
+              color: '#FFF',
+              duration: 0.3
+            });
+          }, 2000);
+        }
+      });
+    } catch (error) {
+      // Error handling
+      submitBtn.innerHTML = `${originalText} <i class="fas fa-times ml-2"></i>`;
+      gsap.to(submitBtn, { backgroundColor: '#ff6b6b', duration: 0.3 });
+    } finally {
+      submitBtn.disabled = false;
     }
+  });
 
-    function stopScroll() {
-      clearInterval(scrollInterval);
+  // Achievements Carousel
+  const achievementSwiper = new Swiper('.achievement-swiper', {
+    effect: 'cards',
+    grabCursor: true,
+    loop: true,
+    autoplay: {
+      delay: 5000,
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true
     }
+  });
 
-    techStack.addEventListener('mouseenter', stopScroll);
-    techStack.addEventListener('mouseleave', startScroll);
+  // Flip Card Interaction
+  document.querySelectorAll('.flip-card-inner').forEach(card => {
+    card.addEventListener('click', () => {
+      card.classList.toggle('flipped');
+    });
+  });
 
-    startScroll();
+  // Micro-interaction System
+  const cursorTrail = document.querySelector('.cursor-trail');
+  const hoverDetect = document.querySelector('.hover-detect');
+  let trailElements = [];
 
-    // AOS Initialization
-    AOS.init();
-  </script>
+  // Create cursor trail elements
+  for (let i = 0; i < 12; i++) {
+    const div = document.createElement('div');
+    div.className = 'trail-dot';
+    trailElements.push(div);
+    cursorTrail.appendChild(div);
+  }
+
+  // Animate trail dots
+  gsap.set(trailElements, {
+    position: 'fixed',
+    backgroundColor: '#6C63FF',
+    width: 10,
+    height: 10,
+    borderRadius: '50%',
+    pointerEvents: 'none'
+  });
+
+  window.addEventListener('mousemove', (e) => {
+    gsap.to(trailElements, {
+      duration: 0.8,
+      x: (i) => e.clientX + i * 4,
+      y: (i) => e.clientY + i * 4,
+      opacity: (i) => 1 - (i * 0.08),
+      stagger: 0.03
+    });
+  });
+
+  // Hover Ripple Effect
+  document.querySelectorAll('.interactive-element').forEach(element => {
+    element.addEventListener('mouseenter', (e) => {
+      const ripple = document.createElement('div');
+      ripple.className = 'ripple-effect';
+      gsap.set(ripple, {
+        position: 'absolute',
+        background: 'radial-gradient(circle, rgba(108,99,255,0.3) 0%, transparent 70%)',
+        width: '100%',
+        height: '100%',
+        borderRadius: 'inherit'
+      });
+      
+      gsap.from(ripple, {
+        scale: 0,
+        opacity: 1,
+        duration: 0.6,
+        ease: "power2.out",
+        onComplete: () => ripple.remove()
+      });
+      
+      element.appendChild(ripple);
+    });
+  });
+
+  // Parallax Scrolling Effects
+  gsap.to("#hero h1", {
+    scrollTrigger: {
+      scrub: true
+    },
+    y: (i, target) => -ScrollTrigger.maxScroll(window) * 0.2,
+    ease: "none"
+  });
+
+  // Initialize 3D Avatar
+  const init3DAvatar = () => {
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ alpha: true });
+    renderer.setSize(window.innerWidth * 0.8, window.innerHeight * 0.8);
+    document.getElementById('avatar-3d').appendChild(renderer.domElement);
+
+    // Add basic geometry
+    const geometry = new THREE.IcosahedronGeometry(2, 2);
+    const material = new THREE.MeshPhongMaterial({
+      color: 0x6C63FF,
+      shininess: 100
+    });
+    const mesh = new THREE.Mesh(geometry, material);
+    scene.add(mesh);
+
+    // Add lighting
+    const light = new THREE.PointLight(0xffffff, 1, 100);
+    light.position.set(10, 10, 10);
+    scene.add(light);
+
+    camera.position.z = 5;
+
+    // Animation loop
+    function animate() {
+      requestAnimationFrame(animate);
+      mesh.rotation.x += 0.01;
+      mesh.rotation.y += 0.01;
+      renderer.render(scene, camera);
+    }
+    animate();
+  };
+
+  // Initialize all systems
+  initParticles();
+  init3DAvatar();
+
+  // Performance Optimizations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+        img.src = img.dataset.src;
+        observer.unobserve(img);
+      }
+    });
+  });
+
+  document.querySelectorAll('img[data-src]').forEach(img => {
+    observer.observe(img);
+  });
+});
+
+// Typewriter Effect
+const typewriterText = ["Innovative Developer", "Tech Visionary", "Digital Craftsman"];
+let count = 0;
+let index = 0;
+let currentText = "";
+let letter = "";
+
+(function type() {
+  if (count === typewriterText.length) count = 0;
+  currentText = typewriterText[count];
+  letter = currentText.slice(0, ++index);
+  
+  document.getElementById('typewriter').textContent = letter;
+  if (letter.length === currentText.length) {
+    count++;
+    index = 0;
+    setTimeout(type, 2000);
+  } else {
+    setTimeout(type, 100);
+  }
+})();
+
+// View Transitions
+document.querySelectorAll('[data-scroll-to]').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const target = document.getElementById(link.dataset.scrollTo);
+    gsap.to(window, {
+      duration: 1.5,
+      scrollTo: target,
+      ease: "power4.inOut"
+    });
+  });
+});
+
+// Responsive Handling
+window.addEventListener('resize', () => {
+  initParticles();
+  init3DAvatar();
+});
+
+// Service Worker Registration
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then(registration => console.log('SW registered'))
+      .catch(err => console.log('SW registration failed'));
+  });
+}
+</script>
 </body>
 </html>
