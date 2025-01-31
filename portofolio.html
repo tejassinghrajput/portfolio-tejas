@@ -168,6 +168,66 @@
             }
         }
         
+        .tech-stack-container {
+    padding: 2rem 0;
+    background: var(--glass-bg);
+    border-radius: 20px;
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+}
+
+.tech-stack {
+    position: relative;
+    display: flex;
+    gap: 2rem;
+    padding: 0 2rem;
+    width: max-content;
+    animation: scroll 20s linear infinite;
+}
+
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
+.tech-stack-item {
+    flex-shrink: 0;
+    width: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    opacity: 0.9;
+    margin: 0 0.5rem;
+}
+
+.tech-stack-item:hover {
+    transform: translateY(-5px);
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .tech-stack {
+        gap: 1rem;
+        animation: none;
+    }
+    
+    .tech-stack-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .tech-stack-item img {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .tech-stack-item span {
+        font-size: 1rem;
+    }
+}
+        
     </style>
 </head>
 <body>
@@ -353,12 +413,10 @@
         </div>
     </section>
 
-<!-- Project Showcase -->
 <section id="projects" class="py-24 px-8 lg:px-24">
     <h2 class="text-4xl font-bold text-center mb-16">Featured Projects</h2>
     
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Project Card 1 -->
         <div class="project-card glass p-6 rounded-2xl cursor-pointer transform transition-all duration-300 hover:-translate-y-5 hover:shadow-xl">
             <div class="project-image h-48 rounded-xl overflow-hidden mb-4">
                 <img src="https://source.unsplash.com/random/800x600?ai-platform" 
@@ -385,8 +443,6 @@
                 </a>
             </div>
         </div>
-
-        <!-- Project Card 2 -->
         <div class="project-card glass p-6 rounded-2xl cursor-pointer transform transition-all duration-300 hover:-translate-y-5 hover:shadow-xl">
             <div class="project-image h-48 rounded-xl overflow-hidden mb-4">
                 <img src="https://source.unsplash.com/random/800x600?e-commerce" 
@@ -413,8 +469,6 @@
                 </a>
             </div>
         </div>
-
-        <!-- Project Card 3 -->
         <div class="project-card glass p-6 rounded-2xl cursor-pointer transform transition-all duration-300 hover:-translate-y-5 hover:shadow-xl">
             <div class="project-image h-48 rounded-xl overflow-hidden mb-4">
                 <img src="https://source.unsplash.com/random/800x600?social-media" 
@@ -443,124 +497,102 @@
         </div>
     </div>
 </section>
-    
-    <section id="skills" class="py-24 px-8 lg:px-24">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl font-bold text-center mb-16 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
-                Technical Arsenal
-            </h2>
-            
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
-                <div class="tech-card group" data-aos="zoom-in">
-                    <div class="relative p-6 rounded-xl hover:shadow-lg transition-all duration-300 
-                                backdrop-blur-md bg-white/5 border border-gray-200/20 
-                                flex flex-col items-center justify-center gap-3
-                                hover:bg-white/10 hover:-translate-y-1">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" 
-                             alt="Python" 
-                             class="w-16 h-16 group-hover:scale-110 transition-transform duration-300"/>
-                    </div>
-                </div>
-    
-                <div class="tech-card group" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="relative p-6 rounded-xl hover:shadow-lg transition-all duration-300 
-                                backdrop-blur-md bg-white/5 border border-gray-200/20 
-                                flex flex-col items-center justify-center gap-3
-                                hover:bg-white/10 hover:-translate-y-1">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" 
-                             alt="Java" 
-                             class="w-16 h-16 group-hover:scale-110 transition-transform duration-300"/>
-                    </div>
-                </div>
-    
-                <div class="tech-card group" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="relative p-6 rounded-xl hover:shadow-lg transition-all duration-300 
-                                backdrop-blur-md bg-white/5 border border-gray-200/20 
-                                flex flex-col items-center justify-center gap-3
-                                hover:bg-white/10 hover:-translate-y-1">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" 
-                             alt="C++" 
-                             class="w-16 h-16 group-hover:scale-110 transition-transform duration-300"/>
-                    </div>
-                </div>
-    
-                <div class="tech-card group" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="relative p-6 rounded-xl hover:shadow-lg transition-all duration-300 
-                                backdrop-blur-md bg-white/5 border border-gray-200/20 
-                                flex flex-col items-center justify-center gap-3
-                                hover:bg-white/10 hover:-translate-y-1">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" 
-                             alt="JavaScript" 
-                             class="w-16 h-16 group-hover:scale-110 transition-transform duration-300"/>
-                    </div>
-                </div>
-    
-                <div class="tech-card group" data-aos="zoom-in" data-aos-delay="400">
-                    <div class="relative p-6 rounded-xl hover:shadow-lg transition-all duration-300 
-                                backdrop-blur-md bg-white/5 border border-gray-200/20 
-                                flex flex-col items-center justify-center gap-3
-                                hover:bg-white/10 hover:-translate-y-1">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" 
-                             alt="React" 
-                             class="w-16 h-16 group-hover:scale-110 transition-transform duration-300"/>
-                    </div>
-                </div>
-    
-                <div class="tech-card group" data-aos="zoom-in" data-aos-delay="500">
-                    <div class="relative p-6 rounded-xl hover:shadow-lg transition-all duration-300 
-                                backdrop-blur-md bg-white/5 border border-gray-200/20 
-                                flex flex-col items-center justify-center gap-3
-                                hover:bg-white/10 hover:-translate-y-1">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" 
-                             alt="Node.js" 
-                             class="w-16 h-16 group-hover:scale-110 transition-transform duration-300"/>
-                    </div>
-                </div>
-    
-                <div class="tech-card group" data-aos="zoom-in" data-aos-delay="600">
-                    <div class="relative p-6 rounded-xl hover:shadow-lg transition-all duration-300 
-                                backdrop-blur-md bg-white/5 border border-gray-200/20 
-                                flex flex-col items-center justify-center gap-3
-                                hover:bg-white/10 hover:-translate-y-1">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" 
-                             alt="TypeScript" 
-                             class="w-16 h-16 group-hover:scale-110 transition-transform duration-300"/>
-                    </div>
-                </div>
-    
-                <div class="tech-card group" data-aos="zoom-in" data-aos-delay="700">
-                    <div class="relative p-6 rounded-xl hover:shadow-lg transition-all duration-300 
-                                backdrop-blur-md bg-white/5 border border-gray-200/20 
-                                flex flex-col items-center justify-center gap-3
-                                hover:bg-white/10 hover:-translate-y-1">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" 
-                             alt="MongoDB" 
-                             class="w-16 h-16 group-hover:scale-110 transition-transform duration-300"/>
-                    </div>
-                </div>
-    
-            </div>
-        </div>
-    </section>
 
-    <section id="achievements" class="py-24 px-8 lg:px-24">
-        <div class="swiper achievement-swiper">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide glass p-8 rounded-2xl">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <h3 class="text-2xl font-bold mb-4">Best Open Source Project 2024</h3>
-                            <i class="fas fa-trophy text-4xl text-yellow-400"></i>
-                        </div>
-                        <div class="flip-card-back">
-                            <p>Awarded for contributions to...</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="swiper-pagination"></div>
-        </div>
-    </section>
+
+<div class="tech-stack flex justify-center items-center gap-8 flex-wrap">
+    <!-- Tech Stack Items -->
+    <div class="tech-stack-item flex flex-col items-center transition-transform hover:scale-110">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" 
+             alt="Python" 
+             class="w-16 h-16 mb-2">
+        <span class="text-lg font-medium">Python</span>
+    </div>
+    <div class="tech-stack-item flex flex-col items-center transition-transform hover:scale-110">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" 
+             alt="Java" 
+             class="w-16 h-16 mb-2">
+        <span class="text-lg font-medium">Java</span>
+    </div>
+    <div class="tech-stack-item flex flex-col items-center transition-transform hover:scale-110">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" 
+             alt="C++" 
+             class="w-16 h-16 mb-2">
+        <span class="text-lg font-medium">C++</span>
+    </div>
+    <div class="tech-stack-item flex flex-col items-center transition-transform hover:scale-110">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" 
+             alt="JavaScript" 
+             class="w-16 h-16 mb-2">
+        <span class="text-lg font-medium">JavaScript</span>
+    </div>
+    <div class="tech-stack-item flex flex-col items-center transition-transform hover:scale-110">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" 
+             alt="React" 
+             class="w-16 h-16 mb-2">
+        <span class="text-lg font-medium">React</span>
+    </div>
+    <div class="tech-stack-item flex flex-col items-center transition-transform hover:scale-110">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" 
+             alt="Node.js" 
+             class="w-16 h-16 mb-2">
+        <span class="text-lg font-medium">Node.js</span>
+    </div>
+    <div class="tech-stack-item flex flex-col items-center transition-transform hover:scale-110">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" 
+             alt="TypeScript" 
+             class="w-16 h-16 mb-2">
+        <span class="text-lg font-medium">TypeScript</span>
+    </div>
+    <div class="tech-stack-item flex flex-col items-center transition-transform hover:scale-110">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" 
+             alt="MongoDB" 
+             class="w-16 h-16 mb-2">
+        <span class="text-lg font-medium">MongoDB</span>
+    </div>
+    <div class="tech-stack-item flex flex-col items-center transition-transform hover:scale-110">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" 
+             alt="TensorFlow" 
+             class="w-16 h-16 mb-2">
+        <span class="text-lg font-medium">TensorFlow</span>
+    </div>
+    <div class="tech-stack-item flex flex-col items-center transition-transform hover:scale-110">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" 
+             alt="Next.js" 
+             class="w-16 h-16 mb-2">
+        <span class="text-lg font-medium">Next.js</span>
+    </div>
+    <!-- Duplicate items for smoother looping -->
+    <div class="tech-stack-item flex flex-col items-center transition-transform hover:scale-110">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" 
+             alt="Python" 
+             class="w-16 h-16 mb-2">
+        <span class="text-lg font-medium">Python</span>
+    </div>
+    <div class="tech-stack-item flex flex-col items-center transition-transform hover:scale-110">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" 
+             alt="Java" 
+             class="w-16 h-16 mb-2">
+        <span class="text-lg font-medium">Java</span>
+    </div>
+    <div class="tech-stack-item flex flex-col items-center transition-transform hover:scale-110">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" 
+             alt="C++" 
+             class="w-16 h-16 mb-2">
+        <span class="text-lg font-medium">C++</span>
+    </div>
+    <div class="tech-stack-item flex flex-col items-center transition-transform hover:scale-110">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" 
+             alt="JavaScript" 
+             class="w-16 h-16 mb-2">
+        <span class="text-lg font-medium">JavaScript</span>
+    </div>
+    <div class="tech-stack-item flex flex-col items-center transition-transform hover:scale-110">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" 
+             alt="React" 
+             class="w-16 h-16 mb-2">
+        <span class="text-lg font-medium">React</span>
+    </div>
+</div>
 
     <section id="contact" class="py-24 px-8 lg:px-24">
         <div class="max-w-4xl mx-auto glass p-12 rounded-3xl" data-aos="zoom-in">
@@ -910,6 +942,41 @@ if ('serviceWorker' in navigator) {
       .catch(err => console.log('SW registration failed'));
   });
 }
+
+const stacks = document.querySelectorAll('.tech-stack');
+        stacks.forEach(stack => {
+            const items = stack.querySelectorAll('.tech-stack-item');
+            items.forEach((item, index) => {
+                gsap.from(item, {
+                    opacity: 0,
+                    x: index * 50,
+                    duration: 1,
+                    delay: index * 0.1,
+                    scrollTrigger: {
+                        trigger: stack,
+                        start: 'top 80%',
+                        toggleActions: 'play none none reverse'
+                    }
+                });
+            });
+        });
+
+        // Add hover effects
+        document.querySelectorAll('.tech-stack-item').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                gsap.to(item, {
+                    scale: 1.1,
+                    duration: 0.3
+                });
+            });
+
+            item.addEventListener('mouseleave', () => {
+                gsap.to(item, {
+                    scale: 1,
+                    duration: 0.3
+                });
+            });
+        });
 </script>
 </body>
 </html>
