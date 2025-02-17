@@ -102,8 +102,6 @@
             /* Mobile menu overlay */
             .mobile-menu {
             position: fixed;
-            top: -100%;
-            margin-top: 10%;
             left: 0;
             width: 100%;
             height: auto;
@@ -114,9 +112,10 @@
             display: flex;
             flex-direction: column;
             padding: 1rem 2rem;
+            transform: translateY(-100%); 
             }
             .mobile-menu.open {
-            top: 0;
+                transform: translateY(0);  
             }
             .mobile-menu a {
             padding: 0.5rem 0;
@@ -782,16 +781,14 @@
     <script>
         document.body.classList.add('no-scroll');
         window.addEventListener('load', () => {
-                    // Hide the spinner after the page is fully loaded
                     const spinner = document.getElementById('loading-spinner');
                     spinner.style.opacity = '0';
                     setTimeout(() => {
                         spinner.style.display = 'none';
-                        document.body.classList.remove('no-scroll'); // Enable scrolling
+                        document.body.classList.remove('no-scroll');
                     }, 300);
                 });
         
-        // Dark Mode Toggle Logic
         const themeToggle = document.getElementById('theme-toggle');
         const themeIcon = document.getElementById('theme-icon');
         themeToggle.addEventListener('click', () => {
@@ -801,14 +798,12 @@
         localStorage.setItem('theme', newTheme);
         themeIcon.className = isDark ? 'fas fa-moon' : 'fas fa-sun';
         
-        // Also update mobile toggle icon if exists
         if(document.getElementById('theme-toggle-mobile')){
             const mobileIcon = document.getElementById('theme-icon-mobile');
             mobileIcon.className = themeIcon.className;
         }
         });
         
-        // Dark Mode Toggle Logic for Mobile Navbar (if toggled from mobile menu)
         const themeToggleMobile = document.getElementById('theme-toggle-mobile');
         if (themeToggleMobile) {
         themeToggleMobile.addEventListener('click', () => {
@@ -819,31 +814,43 @@
             const mobileIcon = document.getElementById('theme-icon-mobile');
             mobileIcon.className = isDark ? 'fas fa-moon' : 'fas fa-sun';
             
-            // Also update desktop toggle icon
             themeIcon.className = mobileIcon.className;
         });
         }
-        
-        // Mobile Hamburger Menu Toggle Logic
+        let mobileMenuOpen = false;
+
         const hamburgerBtn = document.getElementById('hamburger-btn');
         const mobileMenu = document.getElementById('mobile-menu');
+
         hamburgerBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('open');
-        });
-        
-        // Close mobile menu on clicking any link and then navigate smoothly
-        document.querySelectorAll('.mobile-nav-item').forEach(link => {
-        link.addEventListener('click', (event) => {
-            event.preventDefault();
-            mobileMenu.classList.remove('open');
-            // Allow the close animation to finish before scrolling
-            setTimeout(() => {
-            window.location.href = link.getAttribute('href');
-            }, 300);
-        });
+            if (!mobileMenuOpen) {
+                mobileMenuOpen = true;
+                gsap.to(mobileMenu, { y: "0%", duration: 0.5, ease: "power3.out" });
+                gsap.fromTo(document.querySelectorAll('.mobile-nav-item'),
+                    { opacity: 0, y: -20 },
+                    { opacity: 1, y: 0, duration: 0.3, stagger: 0.1 }
+                );
+            } else {
+                gsap.to(mobileMenu, { y: "-100%", duration: 0.5, ease: "power3.in", onComplete: () => {
+                    mobileMenuOpen = false;
+                }});
+            }
         });
 
-        // Initialize after DOM content is loaded
+        document.querySelectorAll('.mobile-nav-item').forEach(link => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault();
+                gsap.to(document.querySelectorAll('.mobile-nav-item'),
+                    { opacity: 0, y: -20, duration: 0.3, stagger: 0.05 }
+                );
+                gsap.to(mobileMenu, { y: "-100%", duration: 0.5, ease: "power3.in", onComplete: () => {
+                    mobileMenuOpen = false;
+                    window.location.href = link.getAttribute('href');
+                }});
+            });
+        });
+
+
         document.addEventListener('DOMContentLoaded', () => {
             AOS.init({
                 disable: window.innerWidth < 768  || window.innerWidth < 1920,
@@ -967,7 +974,6 @@
         });
 
         window.addEventListener('resize', () => {
-            // Optionally adjust particle and other elements if needed.
         });
 
         if ('serviceWorker' in navigator) window.addEventListener('load', () => {
