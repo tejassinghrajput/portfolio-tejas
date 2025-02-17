@@ -5,20 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Tejas Kumar Singh's futuristic portfolio showcasing cutting-edge web development projects">
     <title>Tejas Kumar Singh | Visionary Developer 2025</title>
+    <script>
+        (function() {
+            const storedTheme = localStorage.getItem('theme');
+            if (storedTheme) {
+                document.documentElement.setAttribute('data-theme', storedTheme);
+            } else {
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const theme = prefersDark ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', theme);
+                localStorage.setItem('theme', theme);
+            }
+        })();
+    </script>
 
+
+    <!-- Stylesheets -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.4.1/swiper-bundle.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
-
     <style>
         @font-face {
             font-family: 'Celinda';
@@ -34,9 +41,8 @@
         h1, h2, h3 {
             font-family: 'Celinda', 'Orbitron', sans-serif;
         }
-    </style>
 
-    <style>
+        /* Theme Styles */
         :root {
             /* Light Theme */
             --primary-bg: #F8F9FA;
@@ -64,6 +70,94 @@
             color: var(--dark-text);
         }
 
+        nav#main-navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1300;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-bottom-left-radius: 0.5rem;
+            border-bottom-right-radius: 0.5rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            }
+            /* Desktop nav links (visible on md and up) */
+            .nav-links {
+            display: none;
+            }
+            @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+                gap: 1.5rem;
+            }
+            .hamburger {
+                display: none;
+            }
+            }
+            
+            /* Mobile menu overlay */
+            .mobile-menu {
+            position: fixed;
+            top: -100%;
+            margin-top: 10%;
+            left: 0;
+            width: 100%;
+            height: auto;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            transition: top 0.3s ease-in-out;
+            z-index: 1299;
+            display: flex;
+            flex-direction: column;
+            padding: 1rem 2rem;
+            }
+            .mobile-menu.open {
+            top: 0;
+            }
+            .mobile-menu a {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            }
+
+        /* Spinner Styles */
+        #loading-spinner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);  /* Glass blur effect */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1400;
+            transition: opacity 0.3s ease;
+        }
+        [data-theme="dark"] #loading-spinner {
+            background: var(--dark-glass);
+            backdrop-filter: blur(10px);
+        }
+
+        body.no-scroll {
+            overflow: hidden;
+        }
+        
+        .spinner {
+            font-size: 3rem;
+            color: var(--accent-purple);
+            animation: spinner-rotate 1s linear infinite;
+        }
+        @keyframes spinner-rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Particle Canvas */
         #particle-container {
             position: fixed;
             width: 100%;
@@ -92,11 +186,35 @@
                         -9px -9px 18px #141426;
         }
 
+        /* Removed nav styles */
+
+        /* Dark Mode Toggle Button in Top Right */
+        .dark-mode-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1100;
+            padding: 0.5rem;
+            background: rgba(0, 0, 0, 0.4);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .dark-mode-toggle i {
+            font-size: 24px;
+            color: #FFF;
+        }
+
+        body.loading-active nav#main-navbar {
+            filter: blur(5px);
+            pointer-events: none;
+            }
+
+        /* Rest of existing styles retained */
         .timeline {
             position: relative;
             padding: 50px 0;
         }
-
         .timeline::before {
             content: '';
             position: absolute;
@@ -106,7 +224,6 @@
             background: var(--accent-purple);
             transform: translateX(-50%);
         }
-
         .skill-radar {
             width: 300px;
             height: 300px;
@@ -119,65 +236,183 @@
             );
             mask: radial-gradient(transparent 50%, #000 51%);
         }
-
+        .skill-icons {
+            position: relative;
+            width: 100%;
+            height: 100px;
+            overflow: hidden;
+        }
+        .icon-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            animation: move-icons 20s linear infinite;
+            width: auto;
+        }
+        .skill-icon {
+            width: 50px;
+            height: 50px;
+            margin: 10px;
+        }
+        @keyframes move-icons {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
         .project-card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             perspective: 1000px;
         }
-
         .project-card:hover {
             transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
-
         @media (min-width: 768px) {
             .timeline-item:nth-child(even) .hidden.md\:flex {
                 flex-direction: row-reverse;
             }
-            
             .timeline-item:nth-child(even) .w-[45%].text-right {
                 text-align: left;
             }
-            
             .timeline-item:nth-child(even) .flex.items-center.justify-end {
                 justify-content: start;
                 flex-direction: row-reverse;
             }
-            
             .timeline-item:nth-child(even) .w-[45%].pl-12 {
                 padding-left: 0;
                 padding-right: 12px;
             }
         }
-
         @media (max-width: 767px) {
             .timeline-container {
                 padding-left: 1rem;
             }
-            
             .timeline-container .absolute {
                 left: 1rem;
             }
-
             .timeline-item .glass {
                 transition: transform 0.3s ease;
             }
-
             .timeline-item .glass:hover {
                 transform: translateX(0.5rem);
             }
         }
-        
+        .skills-carousel {
+            width: 100%;
+            padding: 20px 0;
+        }
+        .swiper-slide {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+            justify-content: center;
+            padding: 0 8px;
+        }
+        .swiper-slide img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+        .swiper-slide img:hover {
+            transform: scale(1.1);
+        }
+        @media (max-width: 768px) {
+            .swiper-slide {
+                gap: 16px;
+            }
+        }
+        @media (min-width: 768px) {
+            #hero {
+                height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            #about {
+                height: auto;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+        .glass-dark {
+            background: rgba(15, 15, 28, 0.5);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(15, 15, 28, 0.5);
+            box-shadow: 0 8px 32px 0 rgba(15, 15, 28, 0.37);
+        }
+        .no-scroll {
+            overflow: hidden;
+        }
     </style>
 </head>
 <body>
+    <!-- Spinner for page load -->
+    <div id="loading-spinner">
+        <!-- Using Font Awesome spinner icon -->
+        <i class="fas fa-spinner spinner"></i>
+    </div>
+
+    <!-- Dark Mode Toggle Button -->
+    <!-- <button id="theme-toggle" class="dark-mode-toggle">
+        <i id="theme-icon" class="fas fa-moon"></i>
+    </button> -->
+
+    <nav id="main-navbar">
+        <!-- Logo / Site Name -->
+        <div class="logo">
+          <a href="#hero" class="text-2xl font-bold">Tejas Kumar Singh</a>
+        </div>
+        
+        <!-- Desktop Navigation Links -->
+        <div class="nav-links">
+          <a href="#hero" class="nav-item">Home</a>
+          <a href="#about" class="nav-item">About</a>
+          <a href="#experience" class="nav-item">Experience</a>
+          <a href="#projects" class="nav-item">Projects</a>
+          <a href="#skills" class="nav-item">Skills</a>
+          <a href="#achievements" class="nav-item">Achievements</a>
+          <a href="#contact" class="nav-item">Contact</a>
+          <!-- Dark/Light Toggle Button inside Navbar -->
+          <button id="theme-toggle" class="ml-4">
+            <i id="theme-icon" class="fas fa-moon"></i>
+          </button>
+        </div>
+        
+        <!-- Mobile Hamburger Icon -->
+        <div class="hamburger md:hidden">
+          <button id="hamburger-btn" class="p-2 rounded focus:outline-none">
+            <i class="fas fa-bars text-2xl"></i>
+          </button>
+        </div>
+      </nav>
+      
+      <!-- Mobile Menu (hidden by default) -->
+      <div id="mobile-menu" class="mobile-menu md:hidden">
+        <a href="#hero" class="mobile-nav-item">Home</a>
+        <a href="#about" class="mobile-nav-item">About</a>
+        <a href="#experience" class="mobile-nav-item">Experience</a>
+        <a href="#projects" class="mobile-nav-item">Projects</a>
+        <a href="#skills" class="mobile-nav-item">Skills</a>
+        <a href="#achievements" class="mobile-nav-item">Achievements</a>
+        <a href="#contact" class="mobile-nav-item">Contact</a>
+        <!-- Also include the dark/light toggle button in mobile menu if desired -->
+        <button id="theme-toggle-mobile" class="mt-2 self-start">
+          <i id="theme-icon-mobile" class="fas fa-moon"></i>
+        </button>
+      </div>
+
     <div id="particle-container"></div>
 
-    <button id="theme-toggle" class="fixed top-8 right-8 z-50 p-3 rounded-full glass">
-        <i class="fas fa-moon text-purple-600"></i>
-    </button>
-
-    <section id="hero" class="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section id="hero" class="min-h-screen flex items-center justify-center relative overflow-hidden lg:w-1/2 lg:float-left">
         <div class="text-center z-10">
             <h1 class="text-8xl font-bold mb-6" data-aos="zoom-in-down" data-aos-duration="800">
                 <span class="text-gradient">Tejas Kumar</span> Singh
@@ -195,39 +430,24 @@
                 </button>
             </div>
         </div>
-
         <div class="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce">
             <div class="mouse-scroll"></div>
         </div>
     </section>
 
-    <section id="about" class="min-h-screen grid grid-cols-1 lg:grid-cols-2 gap-12 p-12 lg:p-24">
-        <div class="relative h-96 lg:h-auto" data-aos="fade-right">
-            <div class="absolute inset-0 glass rounded-3xl overflow-hidden">
-                <div id="avatar-3d" class="w-full h-full"></div>
-            </div>
-        </div>
-
-        <div class="flex flex-col justify-center" data-aos="fade-left">
-            <h2 class="text-5xl font-bold mb-8">Crafting Digital Excellence</h2>
+    <section id="about" class="min-h-screen flex flex-col justify-center items-center p-12 lg:p-24">
+        <div class="text-center" data-aos="fade-up">
+            <h2 class="text-5xl font-bold mb-8">About Me</h2>
             <p class="text-lg leading-relaxed mb-6">
-                With 7+ years shaping digital experiences, I bridge the gap between...
+                Currently working as an SDE at ShipGlobal, I specialize in backend development using CodeIgniter 4, building scalable and efficient systems. With a strong foundation in web development (PHP, JavaScript, HTML, CSS) and database management (SQL, MongoDB), I focus on writing clean, maintainable code that drives performance. I enjoy solving complex problems, optimizing workflows, and continuously improving system architecture.
             </p>
-            <div class="grid grid-cols-2 gap-4">
-                <div class="p-4 glass rounded-xl hover:transform hover:scale-102 transition">
-                    <h3 class="text-xl font-bold mb-2">Full-Stack Mastery</h3>
-                    <p>React, Node.js, GraphQL, AWS</p>
-                </div>
-            </div>
         </div>
     </section>
 
     <section id="experience" class="py-24 px-8 lg:px-24">
         <h2 class="text-4xl font-bold text-center mb-16">Professional Journey</h2>
-    
         <div class="timeline-container relative max-w-4xl mx-auto">
             <div class="absolute left-[50%] top-0 bottom-0 w-[2px] bg-gradient-to-b from-purple-500 to-pink-500"></div>
-    
             <div class="relative space-y-12 md:space-y-24">
                 <div class="timeline-item group">
                     <div class="hidden md:flex justify-between items-center w-full">
@@ -242,36 +462,32 @@
                                         <img src="https://media.licdn.com/dms/image/v2/D560BAQHiomCBxCcGeQ/company-logo_200_200/company-logo_200_200/0/1729835765269/shipglobalin_logo?e=2147483647&v=beta&t=_Vy0y7_Tow7F8sS7ORt0fKMO492-0RSNDIEe2LycOLA" 
                                              alt="ShipGlobal" 
                                              class="w-8 h-8 rounded-full object-contain bg-white/10 p-1"
-                                            />
+                                             loading="lazy">
                                     </div>
                                 </div>
                             </div>
                         </div>
-    
                         <div class="absolute left-1/2 -translate-x-1/2 w-4 h-4">
                             <div class="absolute w-full h-full bg-purple-500 rounded-full animate-ping opacity-75"></div>
                             <div class="relative w-full h-full bg-purple-500 rounded-full"></div>
                         </div>
-    
                         <div class="w-[45%] pl-12">
                             <span class="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-white text-sm">
                                 September 2024 - Present
                             </span>
                         </div>
                     </div>
-    
                     <div class="md:hidden relative">
                         <div class="absolute left-0 top-6 w-4 h-4 -translate-x-1/2">
                             <div class="absolute w-full h-full bg-purple-500 rounded-full animate-ping opacity-75"></div>
                             <div class="relative w-full h-full bg-purple-500 rounded-full"></div>
                         </div>
-    
                         <div class="glass p-6 rounded-xl ml-8 relative">
                             <div class="flex items-center gap-4 mb-4">
                                 <img src="https://media.licdn.com/dms/image/v2/D560BAQHiomCBxCcGeQ/company-logo_200_200/company-logo_200_200/0/1729835765269/shipglobalin_logo?e=2147483647&v=beta&t=_Vy0y7_Tow7F8sS7ORt0fKMO492-0RSNDIEe2LycOLA" 
                                      alt="ShipGlobal" 
                                      class="w-12 h-12 rounded-full object-contain bg-white/10 p-1"
-                                    />
+                                     loading="lazy">
                                 <div>
                                     <h3 class="text-xl font-bold">SDE Intern</h3>
                                     <span class="text-lg font-semibold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
@@ -288,8 +504,6 @@
                         </div>
                     </div>
                 </div>
-    
-
                 <div class="timeline-item group">
                     <div class="hidden md:flex justify-between items-center w-full">
                         <div class="w-[45%] text-right">
@@ -301,38 +515,34 @@
                                             @Naest Tutors
                                         </span>
                                         <img src="https://media.licdn.com/dms/image/v2/D560BAQEIr22zaQPihw/company-logo_200_200/company-logo_200_200/0/1695820681667/naesttutors_logo?e=2147483647&v=beta&t=EUit3Fbav5W_X9ZJXk0jgHu768qaC75UkXjfRLOr1Uo" 
-                                             alt="ShipGlobal" 
+                                             alt="Naest" 
                                              class="w-8 h-8 rounded-full object-contain bg-white/10 p-1"
-                                            />
+                                             loading="lazy">
                                     </div>
                                 </div>
                             </div>
                         </div>
-    
                         <div class="absolute left-1/2 -translate-x-1/2 w-4 h-4">
                             <div class="absolute w-full h-full bg-purple-500 rounded-full animate-ping opacity-75"></div>
                             <div class="relative w-full h-full bg-purple-500 rounded-full"></div>
                         </div>
-    
                         <div class="w-[45%] pl-12">
                             <span class="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-white text-sm">
                                 March 2024 - August 2024
                             </span>
                         </div>
                     </div>
-    
                     <div class="md:hidden relative">
                         <div class="absolute left-0 top-6 w-4 h-4 -translate-x-1/2">
                             <div class="absolute w-full h-full bg-purple-500 rounded-full animate-ping opacity-75"></div>
                             <div class="relative w-full h-full bg-purple-500 rounded-full"></div>
                         </div>
-    
                         <div class="glass p-6 rounded-xl ml-8 relative">
                             <div class="flex items-center gap-4 mb-4">
                                 <img src="https://media.licdn.com/dms/image/v2/D560BAQEIr22zaQPihw/company-logo_200_200/company-logo_200_200/0/1695820681667/naesttutors_logo?e=2147483647&v=beta&t=EUit3Fbav5W_X9ZJXk0jgHu768qaC75UkXjfRLOr1Uo" 
                                      alt="Naest" 
                                      class="w-12 h-12 rounded-full object-contain bg-white/10 p-1"
-                                    />
+                                     loading="lazy">
                                 <div>
                                     <h3 class="text-xl font-bold">SDE Intern</h3>
                                     <span class="text-lg font-semibold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
@@ -353,192 +563,159 @@
         </div>
     </section>
 
-<!-- Project Showcase -->
-<section id="projects" class="py-24 px-8 lg:px-24">
-    <h2 class="text-4xl font-bold text-center mb-16">Featured Projects</h2>
-    
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Project Card 1 -->
-        <div class="project-card glass p-6 rounded-2xl cursor-pointer transform transition-all duration-300 hover:-translate-y-5 hover:shadow-xl">
-            <div class="project-image h-48 rounded-xl overflow-hidden mb-4">
-                <img src="https://source.unsplash.com/random/800x600?ai-platform" 
-                     alt="AI Platform" 
-                     class="w-full h-full object-cover lazyload" 
-                     loading="lazy">
+    <section id="projects" class="py-24 px-8 lg:px-24">
+        <h2 class="text-4xl font-bold text-center mb-16">Featured Projects</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="project-card glass p-6 rounded-2xl cursor-pointer transform transition-all duration-300 hover:-translate-y-5 hover:shadow-xl">
+                <div class="project-image h-48 rounded-xl overflow-hidden mb-4">
+                    <img src="https://source.unsplash.com/random/800x600?ai-platform" 
+                         alt="AI Platform" 
+                         class="w-full h-full object-cover lazyload" 
+                         loading="lazy">
+                </div>
+                <h3 class="text-2xl font-bold mb-3">AI Analytics Platform</h3>
+                <div class="tech-stack-grid grid grid-cols-3 gap-4">
+                    <a href="https://tensorflow.org" target="_blank" rel="noopener noreferrer">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" 
+                             alt="TensorFlow" 
+                             class="w-12 h-12 rounded-lg hover:opacity-80 transition-opacity"
+                             loading="lazy">
+                    </a>
+                    <a href="https://react.dev" target="_blank" rel="noopener noreferrer">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" 
+                             alt="React" 
+                             class="w-12 h-12 rounded-lg hover:opacity-80 transition-opacity"
+                             loading="lazy">
+                    </a>
+                    <a href="https://nodejs.org" target="_blank" rel="noopener noreferrer">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" 
+                             alt="Node.js" 
+                             class="w-12 h-12 rounded-lg hover:opacity-80 transition-opacity"
+                             loading="lazy">
+                    </a>
+                </div>
             </div>
-            <h3 class="text-2xl font-bold mb-3">AI Analytics Platform</h3>
-            <div class="tech-stack-grid grid grid-cols-3 gap-4">
-                <a href="https://tensorflow.org" target="_blank" rel="noopener noreferrer">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" 
-                         alt="TensorFlow" 
-                         class="w-12 h-12 rounded-lg hover:opacity-80 transition-opacity">
-                </a>
-                <a href="https://react.dev" target="_blank" rel="noopener noreferrer">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" 
-                         alt="React" 
-                         class="w-12 h-12 rounded-lg hover:opacity-80 transition-opacity">
-                </a>
-                <a href="https://nodejs.org" target="_blank" rel="noopener noreferrer">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" 
-                         alt="Node.js" 
-                         class="w-12 h-12 rounded-lg hover:opacity-80 transition-opacity">
-                </a>
+            <div class="project-card glass p-6 rounded-2xl cursor-pointer transform transition-all duration-300 hover:-translate-y-5 hover:shadow-xl">
+                <div class="project-image h-48 rounded-xl overflow-hidden mb-4">
+                    <img src="https://source.unsplash.com/random/800x600?e-commerce" 
+                         alt="E-commerce Platform" 
+                         class="w-full h-full object-cover lazyload" 
+                         loading="lazy">
+                </div>
+                <h3 class="text-2xl font-bold mb-3">E-commerce Platform</h3>
+                <div class="tech-stack-grid grid grid-cols-3 gap-4">
+                    <a href="https://nextjs.org" target="_blank" rel="noopener noreferrer">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" 
+                             alt="Next.js" 
+                             class="w-12 h-12 rounded-lg hover:opacity-80 transition-opacity"
+                             loading="lazy">
+                    </a>
+                    <a href="https://mongodb.com" target="_blank" rel="noopener noreferrer">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" 
+                             alt="MongoDB" 
+                             class="w-12 h-12 rounded-lg hover:opacity-80 transition-opacity"
+                             loading="lazy">
+                    </a>
+                    <a href="https://stripe.com" target="_blank" rel="noopener noreferrer">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/stripe/stripe-original.svg" 
+                             alt="Stripe" 
+                             class="w-12 h-12 rounded-lg hover:opacity-80 transition-opacity"
+                             loading="lazy">
+                    </a>
+                </div>
+            </div>
+            <div class="project-card glass p-6 rounded-2xl cursor-pointer transform transition-all duration-300 hover:-translate-y-5 hover:shadow-xl">
+                <div class="project-image h-48 rounded-xl overflow-hidden mb-4">
+                    <img src="https://source.unsplash.com/random/800x600?social-media" 
+                         alt="Social Media App" 
+                         class="w-full h-full object-cover lazyload" 
+                         loading="lazy">
+                </div>
+                <h3 class="text-2xl font-bold mb-3">Social Media Application</h3>
+                <div class="tech-stack-grid grid grid-cols-3 gap-4">
+                    <a href="https://vuejs.org" target="_blank" rel="noopener noreferrer">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" 
+                             alt="Vue.js" 
+                             class="w-12 h-12 rounded-lg hover:opacity-80 transition-opacity"
+                             loading="lazy">
+                    </a>
+                    <a href="https://firebase.google.com" target="_blank" rel="noopener noreferrer">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-original.svg" 
+                             alt="Firebase" 
+                             class="w-12 h-12 rounded-lg hover:opacity-80 transition-opacity"
+                             loading="lazy">
+                    </a>
+                    <a href="https://graphql.org" target="_blank" rel="noopener noreferrer">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg" 
+                             alt="GraphQL" 
+                             class="w-12 h-12 rounded-lg hover:opacity-80 transition-opacity"
+                             loading="lazy">
+                    </a>
+                </div>
             </div>
         </div>
-
-        <!-- Project Card 2 -->
-        <div class="project-card glass p-6 rounded-2xl cursor-pointer transform transition-all duration-300 hover:-translate-y-5 hover:shadow-xl">
-            <div class="project-image h-48 rounded-xl overflow-hidden mb-4">
-                <img src="https://source.unsplash.com/random/800x600?e-commerce" 
-                     alt="E-commerce Platform" 
-                     class="w-full h-full object-cover lazyload" 
-                     loading="lazy">
-            </div>
-            <h3 class="text-2xl font-bold mb-3">E-commerce Platform</h3>
-            <div class="tech-stack-grid grid grid-cols-3 gap-4">
-                <a href="https://nextjs.org" target="_blank" rel="noopener noreferrer">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" 
-                         alt="Next.js" 
-                         class="w-12 h-12 rounded-lg hover:opacity-80 transition-opacity">
-                </a>
-                <a href="https://mongodb.com" target="_blank" rel="noopener noreferrer">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" 
-                         alt="MongoDB" 
-                         class="w-12 h-12 rounded-lg hover:opacity-80 transition-opacity">
-                </a>
-                <a href="https://stripe.com" target="_blank" rel="noopener noreferrer">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/stripe/stripe-original.svg" 
-                         alt="Stripe" 
-                         class="w-12 h-12 rounded-lg hover:opacity-80 transition-opacity">
-                </a>
-            </div>
-        </div>
-
-        <!-- Project Card 3 -->
-        <div class="project-card glass p-6 rounded-2xl cursor-pointer transform transition-all duration-300 hover:-translate-y-5 hover:shadow-xl">
-            <div class="project-image h-48 rounded-xl overflow-hidden mb-4">
-                <img src="https://source.unsplash.com/random/800x600?social-media" 
-                     alt="Social Media App" 
-                     class="w-full h-full object-cover lazyload" 
-                     loading="lazy">
-            </div>
-            <h3 class="text-2xl font-bold mb-3">Social Media Application</h3>
-            <div class="tech-stack-grid grid grid-cols-3 gap-4">
-                <a href="https://vuejs.org" target="_blank" rel="noopener noreferrer">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" 
-                         alt="Vue.js" 
-                         class="w-12 h-12 rounded-lg hover:opacity-80 transition-opacity">
-                </a>
-                <a href="https://firebase.google.com" target="_blank" rel="noopener noreferrer">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-original.svg" 
-                         alt="Firebase" 
-                         class="w-12 h-12 rounded-lg hover:opacity-80 transition-opacity">
-                </a>
-                <a href="https://graphql.org" target="_blank" rel="noopener noreferrer">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg" 
-                         alt="GraphQL" 
-                         class="w-12 h-12 rounded-lg hover:opacity-80 transition-opacity">
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
+    </section>
     
     <section id="skills" class="py-24 px-8 lg:px-24">
         <div class="max-w-6xl mx-auto">
             <h2 class="text-4xl font-bold text-center mb-16 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
                 Technical Arsenal
             </h2>
-            
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
-                <div class="tech-card group" data-aos="zoom-in">
-                    <div class="relative p-6 rounded-xl hover:shadow-lg transition-all duration-300 
-                                backdrop-blur-md bg-white/5 border border-gray-200/20 
-                                flex flex-col items-center justify-center gap-3
-                                hover:bg-white/10 hover:-translate-y-1">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" 
-                             alt="Python" 
-                             class="w-16 h-16 group-hover:scale-110 transition-transform duration-300"/>
-                    </div>
+            <div class="skill-icons">
+                <div class="icon-container">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" 
+                         alt="Python" 
+                         class="skill-icon"
+                         loading="lazy">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" 
+                         alt="Java" 
+                         class="skill-icon"
+                         loading="lazy">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" 
+                         alt="C++" 
+                         class="skill-icon"
+                         loading="lazy">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" 
+                         alt="JavaScript" 
+                         class="skill-icon"
+                         loading="lazy">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" 
+                         alt="React" 
+                         class="skill-icon"
+                         loading="lazy">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" 
+                         alt="Node.js" 
+                         class="skill-icon"
+                         loading="lazy">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" 
+                         alt="TypeScript" 
+                         class="skill-icon"
+                         loading="lazy">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" 
+                         alt="MongoDB" 
+                         class="skill-icon"
+                         loading="lazy">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" 
+                         alt="Python" 
+                         class="skill-icon"
+                         loading="lazy">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" 
+                         alt="Java" 
+                         class="skill-icon"
+                         loading="lazy">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" 
+                         alt="C++" 
+                         class="skill-icon"
+                         loading="lazy">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" 
+                         alt="JavaScript" 
+                         class="skill-icon"
+                         loading="lazy">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" 
+                         alt="React" 
+                         class="skill-icon"
+                         loading="lazy">
                 </div>
-    
-                <div class="tech-card group" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="relative p-6 rounded-xl hover:shadow-lg transition-all duration-300 
-                                backdrop-blur-md bg-white/5 border border-gray-200/20 
-                                flex flex-col items-center justify-center gap-3
-                                hover:bg-white/10 hover:-translate-y-1">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" 
-                             alt="Java" 
-                             class="w-16 h-16 group-hover:scale-110 transition-transform duration-300"/>
-                    </div>
-                </div>
-    
-                <div class="tech-card group" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="relative p-6 rounded-xl hover:shadow-lg transition-all duration-300 
-                                backdrop-blur-md bg-white/5 border border-gray-200/20 
-                                flex flex-col items-center justify-center gap-3
-                                hover:bg-white/10 hover:-translate-y-1">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" 
-                             alt="C++" 
-                             class="w-16 h-16 group-hover:scale-110 transition-transform duration-300"/>
-                    </div>
-                </div>
-    
-                <div class="tech-card group" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="relative p-6 rounded-xl hover:shadow-lg transition-all duration-300 
-                                backdrop-blur-md bg-white/5 border border-gray-200/20 
-                                flex flex-col items-center justify-center gap-3
-                                hover:bg-white/10 hover:-translate-y-1">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" 
-                             alt="JavaScript" 
-                             class="w-16 h-16 group-hover:scale-110 transition-transform duration-300"/>
-                    </div>
-                </div>
-    
-                <div class="tech-card group" data-aos="zoom-in" data-aos-delay="400">
-                    <div class="relative p-6 rounded-xl hover:shadow-lg transition-all duration-300 
-                                backdrop-blur-md bg-white/5 border border-gray-200/20 
-                                flex flex-col items-center justify-center gap-3
-                                hover:bg-white/10 hover:-translate-y-1">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" 
-                             alt="React" 
-                             class="w-16 h-16 group-hover:scale-110 transition-transform duration-300"/>
-                    </div>
-                </div>
-    
-                <div class="tech-card group" data-aos="zoom-in" data-aos-delay="500">
-                    <div class="relative p-6 rounded-xl hover:shadow-lg transition-all duration-300 
-                                backdrop-blur-md bg-white/5 border border-gray-200/20 
-                                flex flex-col items-center justify-center gap-3
-                                hover:bg-white/10 hover:-translate-y-1">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" 
-                             alt="Node.js" 
-                             class="w-16 h-16 group-hover:scale-110 transition-transform duration-300"/>
-                    </div>
-                </div>
-    
-                <div class="tech-card group" data-aos="zoom-in" data-aos-delay="600">
-                    <div class="relative p-6 rounded-xl hover:shadow-lg transition-all duration-300 
-                                backdrop-blur-md bg-white/5 border border-gray-200/20 
-                                flex flex-col items-center justify-center gap-3
-                                hover:bg-white/10 hover:-translate-y-1">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" 
-                             alt="TypeScript" 
-                             class="w-16 h-16 group-hover:scale-110 transition-transform duration-300"/>
-                    </div>
-                </div>
-    
-                <div class="tech-card group" data-aos="zoom-in" data-aos-delay="700">
-                    <div class="relative p-6 rounded-xl hover:shadow-lg transition-all duration-300 
-                                backdrop-blur-md bg-white/5 border border-gray-200/20 
-                                flex flex-col items-center justify-center gap-3
-                                hover:bg-white/10 hover:-translate-y-1">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" 
-                             alt="MongoDB" 
-                             class="w-16 h-16 group-hover:scale-110 transition-transform duration-300"/>
-                    </div>
-                </div>
-    
             </div>
         </div>
     </section>
@@ -565,7 +742,6 @@
     <section id="contact" class="py-24 px-8 lg:px-24">
         <div class="max-w-4xl mx-auto glass p-12 rounded-3xl" data-aos="zoom-in">
             <h2 class="text-4xl font-bold text-center mb-12">Let's Connect</h2>
-            
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
                 <div class="space-y-6">
                     <div class="contact-info flex items-center gap-4">
@@ -573,26 +749,17 @@
                         <a href="mailto:contact@tejaskumar.com" class="hover:text-purple-500 transition">contact@tejaskumar.com</a>
                     </div>
                 </div>
-
                 <form id="contact-form" class="space-y-6">
                     <div class="form-group">
-                        <input type="text" class="w-full glass p-4 rounded-xl" 
-                               placeholder="Your Name" required
-                               data-aos="fade-up">
+                        <input type="text" class="w-full glass p-4 rounded-xl" placeholder="Your Name" required data-aos="fade-up">
                     </div>
                     <div class="form-group">
-                        <input type="email" class="w-full glass p-4 rounded-xl" 
-                               placeholder="Email Address" required
-                               data-aos="fade-up" data-aos-delay="100">
+                        <input type="email" class="w-full glass p-4 rounded-xl" placeholder="Email Address" required data-aos="fade-up" data-aos-delay="100">
                     </div>
                     <div class="form-group">
-                        <textarea class="w-full glass p-4 rounded-xl h-32" 
-                                  placeholder="Your Message" required
-                                  data-aos="fade-up" data-aos-delay="200"></textarea>
+                        <textarea class="w-full glass p-4 rounded-xl h-32" placeholder="Your Message" required data-aos="fade-up" data-aos-delay="200"></textarea>
                     </div>
-                    <button type="submit" 
-                            class="w-full bg-purple-500 text-white py-4 rounded-xl hover:bg-purple-600 transition"
-                            data-aos="zoom-in">
+                    <button type="submit" class="w-full bg-purple-500 text-white py-4 rounded-xl hover:bg-purple-600 transition" data-aos="zoom-in">
                         Send Message <i class="fas fa-paper-plane ml-2"></i>
                     </button>
                 </form>
@@ -603,7 +770,80 @@
     <div class="cursor-trail"></div>
     <div class="hover-detect"></div>
 
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
     <script>
+        document.body.classList.add('no-scroll');
+        window.addEventListener('load', () => {
+                    // Hide the spinner after the page is fully loaded
+                    const spinner = document.getElementById('loading-spinner');
+                    spinner.style.opacity = '0';
+                    setTimeout(() => {
+                        spinner.style.display = 'none';
+                        document.body.classList.remove('no-scroll'); // Enable scrolling
+                    }, 300);
+                });
+        
+        // Dark Mode Toggle Logic
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        themeToggle.addEventListener('click', () => {
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        const newTheme = isDark ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        themeIcon.className = isDark ? 'fas fa-moon' : 'fas fa-sun';
+        
+        // Also update mobile toggle icon if exists
+        if(document.getElementById('theme-toggle-mobile')){
+            const mobileIcon = document.getElementById('theme-icon-mobile');
+            mobileIcon.className = themeIcon.className;
+        }
+        });
+        
+        // Dark Mode Toggle Logic for Mobile Navbar (if toggled from mobile menu)
+        const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+        if (themeToggleMobile) {
+        themeToggleMobile.addEventListener('click', () => {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            const newTheme = isDark ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            const mobileIcon = document.getElementById('theme-icon-mobile');
+            mobileIcon.className = isDark ? 'fas fa-moon' : 'fas fa-sun';
+            
+            // Also update desktop toggle icon
+            themeIcon.className = mobileIcon.className;
+        });
+        }
+        
+        // Mobile Hamburger Menu Toggle Logic
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        hamburgerBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('open');
+        });
+        
+        // Close mobile menu on clicking any link and then navigate smoothly
+        document.querySelectorAll('.mobile-nav-item').forEach(link => {
+        link.addEventListener('click', (event) => {
+            event.preventDefault();
+            mobileMenu.classList.remove('open');
+            // Allow the close animation to finish before scrolling
+            setTimeout(() => {
+            window.location.href = link.getAttribute('href');
+            }, 300);
+        });
+        });
+
+        // Initialize after DOM content is loaded
         document.addEventListener('DOMContentLoaded', () => {
             AOS.init({
                 disable: window.innerWidth < 768  || window.innerWidth < 1920,
@@ -612,28 +852,8 @@
                 offset: 100,
                 delay: 100
             });
-    
-            gsap.utils.toArray('.tech-card').forEach((card, i) => {
-                gsap.from(card, {
-                    opacity: 0,
-                    y: 50,
-                    duration: 0.8,
-                    delay: i * 0.1,
-                    scrollTrigger: {
-                        trigger: card,
-                        start: 'top 80%',
-                        toggleActions: 'play none none reverse'
-                    }
-                });
-            });
-            AOS.init({
-                duration: 800,
-                once: false,
-                mirror: true
-            });
 
             gsap.registerPlugin(ScrollTrigger);
-            
             gsap.utils.toArray('section').forEach(section => {
                 gsap.from(section, {
                     scrollTrigger: {
@@ -641,7 +861,7 @@
                         start: "top 80%",
                         toggleActions: "play none none reverse"
                     },
-                    opacity: 0,
+                    opacity : 0,
                     y: 50,
                     duration: 1
                 });
@@ -678,238 +898,83 @@
                 animate();
             };
 
-            const themeToggle = document.getElementById('theme-toggle');
-            themeToggle.addEventListener('click', () => {
-                const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-                document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
-                localStorage.setItem('theme', isDark ? 'light' : 'dark');
+            initParticles();
+
+            const achievementSwiper = new Swiper('.achievement-swiper', {
+                effect: 'cards',
+                grabCursor: true,
+                loop: true,
+                autoplay: {
+                    delay: 5000,
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true
+                }
             });
 
-            document.querySelectorAll('.skill-bar').forEach(bar => {
-                  const percentage = bar.dataset.percentage || '95%';
-    const progress = bar.querySelector('.h-full');
-    progress.style.width = percentage;
-    gsap.from(progress, {
-      width: 0,
-      duration: 2,
-      ease: "power4.out",
-      scrollTrigger: {
-        trigger: bar,
-        start: "top 80%"
-      }
-    });
-  });
+            const typewriterText = ["Innovative Developer", "Tech Visionary", "Digital Craftsman"];
+            let count = 0;
+            let index = 0;
+            let currentText = "";
+            let letter = "";
+            (function type() {
+                if (count === typewriterText.length) count = 0;
+                currentText = typewriterText[count];
+                letter = currentText.slice(0, ++index);
+                document.getElementById('typewriter').textContent = letter;
+                if (letter.length === currentText.length) {
+                    count++;
+                    index = 0;
+                    setTimeout(type, 2000);
+                } else {
+                    setTimeout(type, 100);
+                }
+            })();
 
-  const contactForm = document.getElementById('contact-form');
-  contactForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const submitBtn = contactForm.querySelector('button[type="submit"]');
-    const originalText = submitBtn.innerHTML;
-    
-    submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Sending...`;
-    submitBtn.disabled = true;
-
-    try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      gsap.to(submitBtn, {
-        backgroundColor: '#00FF9D',
-        color: '#000',
-        duration: 0.3,
-        onComplete: () => {
-          contactForm.reset();
-          submitBtn.innerHTML = `${originalText} <i class="fas fa-check ml-2"></i>`;
-          setTimeout(() => {
-            gsap.to(submitBtn, {
-              backgroundColor: '#6C63FF',
-              color: '#FFF',
-              duration: 0.3
+            const contactForm = document.getElementById('contact-form');
+            contactForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const submitBtn = contactForm.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Sending...`;
+                submitBtn.disabled = true;
+                try {
+                    await new Promise(resolve => setTimeout(resolve, 2000));
+                    gsap.to(submitBtn, {
+                        backgroundColor: '#00FF9D',
+                        color: '#000',
+                        duration: 0.3,
+                        onComplete: () => {
+                            contactForm.reset();
+                            submitBtn.innerHTML = `${originalText} <i class="fas fa-check ml-2"></i>`;
+                            setTimeout(() => {
+                                gsap.to(submitBtn, {
+                                    backgroundColor: '#6C63FF',
+                                    color: '#FFF',
+                                    duration: 0.3
+                                });
+                            }, 2000);
+                        }
+                    });
+                } catch (error) {
+                    submitBtn.innerHTML = `${originalText} <i class="fas fa-times ml-2"></i>`;
+                    gsap.to(submitBtn, { backgroundColor: '#ff6b6b', duration: 0.3 });
+                } finally {
+                    submitBtn.disabled = false;
+                }
             });
-          }, 2000);
-        }
-      });
-    } catch (error) {
-      submitBtn.innerHTML = `${originalText} <i class="fas fa-times ml-2"></i>`;
-      gsap.to(submitBtn, { backgroundColor: '#ff6b6b', duration: 0.3 });
-    } finally {
-      submitBtn.disabled = false;
-    }
-  });
+        });
 
-  const achievementSwiper = new Swiper('.achievement-swiper', {
-    effect: 'cards',
-    grabCursor: true,
-    loop: true,
-    autoplay: {
-      delay: 5000,
-    },
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true
-    }
-  });
+        window.addEventListener('resize', () => {
+            // Optionally adjust particle and other elements if needed.
+        });
 
-  document.querySelectorAll('.flip-card-inner').forEach(card => {
-    card.addEventListener('click', () => {
-      card.classList.toggle('flipped');
-    });
-  });
-
-  const cursorTrail = document.querySelector('.cursor-trail');
-  const hoverDetect = document.querySelector('.hover-detect');
-  let trailElements = [];
-
-  for (let i = 0; i < 12; i++) {
-    const div = document.createElement('div');
-    div.className = 'trail-dot';
-    trailElements.push(div);
-    cursorTrail.appendChild(div);
-  }
-
-  gsap.set(trailElements, {
-    position: 'fixed',
-    backgroundColor: '#6C63FF',
-    width: 10,
-    height: 10,
-    borderRadius: '50%',
-    pointerEvents: 'none'
-  });
-
-  window.addEventListener('mousemove', (e) => {
-    gsap.to(trailElements, {
-      duration: 0.8,
-      x: (i) => e.clientX + i * 4,
-      y: (i) => e.clientY + i * 4,
-      opacity: (i) => 1 - (i * 0.08),
-      stagger: 0.03
-    });
-  });
-
-  document.querySelectorAll('.interactive-element').forEach(element => {
-    element.addEventListener('mouseenter', (e) => {
-      const ripple = document.createElement('div');
-      ripple.className = 'ripple-effect';
-      gsap.set(ripple, {
-        position: 'absolute',
-        background: 'radial-gradient(circle, rgba(108,99,255,0.3) 0%, transparent 70%)',
-        width: '100%',
-        height: '100%',
-        borderRadius: 'inherit'
-      });
-      
-      gsap.from(ripple, {
-        scale: 0,
-        opacity: 1,
-        duration: 0.6,
-        ease: "power2.out",
-        onComplete: () => ripple.remove()
-      });
-      
-      element.appendChild(ripple);
-    });
-  });
-
-  gsap.to("#hero h1", {
-    scrollTrigger: {
-      scrub: true
-    },
-    y: (i, target) => -ScrollTrigger.maxScroll(window) * 0.2,
-    ease: "none"
-  });
-
-  const init3DAvatar = () => {
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ alpha: true });
-    renderer.setSize(window.innerWidth * 0.8, window.innerHeight * 0.8);
-    document.getElementById('avatar-3d').appendChild(renderer.domElement);
-
-    const geometry = new THREE.IcosahedronGeometry(2, 2);
-    const material = new THREE.MeshPhongMaterial({
-      color: 0x6C63FF,
-      shininess: 100
-    });
-    const mesh = new THREE.Mesh(geometry, material);
-    scene.add(mesh);
-
-    const light = new THREE.PointLight(0xffffff, 1, 100);
-    light.position.set(10, 10, 10);
-    scene.add(light);
-
-    camera.position.z = 5;
-
-    function animate() {
-      requestAnimationFrame(animate);
-      mesh.rotation.x += 0.01;
-      mesh.rotation.y += 0.01;
-      renderer.render(scene, camera);
-    }
-    animate();
-  };
-
-  initParticles();
-  init3DAvatar();
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const img = entry.target;
-        img.src = img.dataset.src;
-        observer.unobserve(img);
-      }
-    });
-  });
-
-  document.querySelectorAll('img[data-src]').forEach(img => {
-    observer.observe(img);
-  });
-});
-
-const typewriterText = ["Innovative Developer", "Tech Visionary", "Digital Craftsman"];
-let count = 0;
-let index = 0;
-let currentText = "";
-let letter = "";
-
-(function type() {
-  if (count === typewriterText.length) count = 0;
-  currentText = typewriterText[count];
-  letter = currentText.slice(0, ++index);
-  
-  document.getElementById('typewriter').textContent = letter;
-  if (letter.length === currentText.length) {
-    count++;
-    index = 0;
-    setTimeout(type, 2000);
-  } else {
-    setTimeout(type, 100);
-  }
-})();
-
-document.querySelectorAll('[data-scroll-to]').forEach(link => {
-  link.addEventListener('click', (e) => {
-    e.preventDefault();
-    const target = document.getElementById(link.dataset.scrollTo);
-    gsap.to(window, {
-      duration: 1.5,
-      scrollTo: target,
-      ease: "power4.inOut"
-    });
-  });
-});
-
-window.addEventListener('resize', () => {
-  initParticles();
-  init3DAvatar();
-});
-
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js')
-      .then(registration => console.log('SW registered'))
-      .catch(err => console.log('SW registration failed'));
-  });
-}
-</script>
+        if ('serviceWorker' in navigator) window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js')
+                .then(registration => console.log('SW registered'))
+                .catch(err => console.log('SW registration failed'));
+        });
+    </script>
 </body>
 </html>
